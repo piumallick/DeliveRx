@@ -1,0 +1,126 @@
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: linear-gradient(#243b55, #243b55);
+  /*background: linear-gradient(#141e30, #243b55);*/
+}
+
+.create-account h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.create-account .user-details {
+  position: relative;
+}
+
+.create-account {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, .5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+  border-radius: 10px;
+}
+
+.create-account .user-details input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+
+.create-account .user-details label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.create-account .user-details input:focus ~ label,
+.create-account .user-details input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: #03e9f4;
+  font-size: 12px;
+}
+
+
+.create-account form button {
+  position: relative;
+  display: inline-block;
+  padding: 8px 10px;
+  color: black;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px
+}
+
+.create-account button:hover {
+  background: #81F7FD;
+  color: #3B3B3B;
+  border-radius: 5px;
+}
+
+.create-account button:focus {
+  background: #81F7FD;
+  color: #3B3B3B;
+  border-radius: 5px;
+}
+
+.button {
+  height: 80px;
+  position: relative;
+}
+
+.right {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 75%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: black;
+}
+
+.left {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 15%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: black;
+}
+
+input[type=date] {
+  color: transparent !important;
+}
+
+.active input[type=date] {
+  color: inherit !important;
+}
