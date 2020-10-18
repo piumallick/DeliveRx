@@ -28,12 +28,14 @@ body {
   font-size: 1.5rem;
   transition: all 0.5s ease-in-out;
 }
+
 .nav-link:hover {
   color: var(--mainBlack);
 }
+
 /* end of nav links */
-/* info icons */main
-.cart-info__icon {
+/* info icons */
+main, .cart-info__icon {
   color: var(--mainBlack);
   cursor: pointer;
 }
