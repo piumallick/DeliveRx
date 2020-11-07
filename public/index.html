@@ -31,10 +31,10 @@
             <a class="nav-link" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link " href="#">About</a>
+            <a class="nav-link " href="#about">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Store</a>
+            <a class="nav-link" href="#store">Store</a>
           </li>
         </ul>
         <div class="nav-info-items d-none d-lg-flex ">
@@ -45,8 +45,9 @@
           </div>
           <div>
             <ul>
-              <a class="nav-link" target="popup"
-                 onclick="window.open('login.html', 'name', 'width=500,height=650')">Login</a>
+              <!--<a class="nav-link" target="popup"
+                 onclick="window.open('/users/login', 'name', 'width=500,height=650')">Login</a> -->
+              <a class="nav-link" href="/users/login">Login</a>
             </ul>
           </div>
           <!-- end of single info -->
@@ -95,23 +96,35 @@
   <!-- header -->
   <!-- about us -->
   <section class="about py-5" id="about">
-    <div class="container">
+    <div class="about_us">
+      <div class="container">
 
-      <div class="row">
-        <div class="col-10 mx-auto col-md-6 my-5">
-          <h1 class="text-capitalize">about <strong class="banner-title ">us</strong></h1>
-        
-          <a href="#" class="btn btn-outline-secondary btn-black text-uppercase ">explore</a>
+        <div class="row">
 
-        </div>
-        <div class="col-10 mx-auto col-md-6 align-self-center my-5">
-          <div class="about-img__container">
-            <img src="img/about.jpg" class="img-fluid" alt="">
+          <div class="col-10 mx-auto col-md-6 my-5">
+            <h1 class="text-capitalize"><strong class="banner-title ">about us</strong></h1>
+
+            <!--<a href="#" class="btn btn-outline-secondary btn-black text-uppercase ">explore</a>-->
+            <p>Hello! <br><br>
+
+              We are a local online-medicine store based out of Oakland, Pittsburgh.<br>
+              We offer No-Touch Hassle-Free Over-The-Counter medicine delivery - at your doorstep.<br>
+
+              During the pandemic times, let's build a healthier and safer community - together.<br><br><br>
+            </p>
+
+          </div>
+
+          <div class="col-10 mx-auto col-md-6 align-self-center my-5">
+            <div class="about-img__container">
+              <img src="img/about.jpg" class="img-fluid" alt="">
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
 
   <!-- end of about us -->
 
@@ -122,21 +135,44 @@
       <!-- section title -->
       <div class="row">
         <div class="col-10 mx-auto col-sm-6 text-center">
-          <h1 class="text-capitalize">our <strong class="banner-title ">store</strong></h1>
+          <h1 class="text-capitalize"><strong class="banner-title ">Shop by Category</strong></h1>
         </div>
       </div>
       <!-- end of section title -->
+
+
       <!--filter buttons -->
       <div class="row">
         <div class=" col-lg-8 mx-auto d-flex justify-content-around my-2 sortBtn flex-wrap">
-          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="all"> all</a>
-          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Cold&Cough">Cold&Cough</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="all"> All</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2"
+             data-filter="Cold&Cough">Cold/Cough</a>
           <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="First Aid">First Aid</a>
-          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Pain&Fever">Pain&Fever</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2"
+             data-filter="Pain&Fever">Pain/Fever</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Skin Care">Skin Care</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Digestive Health">Digestive
+            Health</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2"
+             data-filter="Supplements">Supplements</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Kids">Kids</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Allergy/Congestion">Allergy/Congestion</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Feminine Health">Feminine
+            Health</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Feminine Health">Hygiene/Other</a>
         </div>
       </div>
-   
+
+      <!-- form search section -- begin -->
+      <div class="form-search">
+        <input id="search" type="text" name="q" class="search" placeholder="Search.....">
+        <svg class="svg-icon" viewBox="0 0 20 20">
+          <path d="M18.125,15.804l-4.038-4.037c0.675-1.079,1.012-2.308,1.01-3.534C15.089,4.62,12.199,1.75,8.584,1.75C4.815,1.75,1.982,4.726,2,8.286c0.021,3.577,2.908,6.549,6.578,6.549c1.241,0,2.417-0.347,3.44-0.985l4.032,4.026c0.167,0.166,0.43,0.166,0.596,0l1.479-1.478C18.292,16.234,18.292,15.968,18.125,15.804 M8.578,13.99c-3.198,0-5.716-2.593-5.733-5.71c-0.017-3.084,2.438-5.686,5.74-5.686c3.197,0,5.625,2.493,5.64,5.624C14.242,11.548,11.621,13.99,8.578,13.99 M16.349,16.981l-3.637-3.635c0.131-0.11,0.721-0.695,0.876-0.884l3.642,3.639L16.349,16.981z"></path>
+        </svg>
+      </div>
+      <!--form search section - end -->
       <!--end of filter buttons -->
+
       <!-- store  items-->
       <div class="row" class="store-items" id="store-items">
 
