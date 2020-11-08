@@ -11,13 +11,13 @@ const httpStatusCodes = require('http-status-codes');
 const reasonPhrases = httpStatusCodes.ReasonPhrases;
 const statusCodes = httpStatusCodes.StatusCodes;
 
-router.get('/', verifyStuff, function (req, res, next) {
+router.get('/', verifyStaff, function (req, res, next) {
     res.render('dashboard_staff');
 });
 
-function verifyStuff(req, res, next) {
+function verifyStaff(req, res, next) {
     if (isAuthenticated(req)) {
-        if (!isStuff(req, res)) {
+        if (!isStaff(req, res)) {
             res.redirect('/dashboard');
         }
         return next;
@@ -25,7 +25,7 @@ function verifyStuff(req, res, next) {
     res.redirect('/users/login');
 }
 
-function isStuff(req, res) {
+function isStaff(req, res) {
     if (isAuthenticated(req)) {
         const user = getUser(req);
         return user.role !== 3
@@ -33,4 +33,4 @@ function isStuff(req, res) {
     res.redirect('/users/login');
 }
 
-module.exports = [router, verifyStuff, isStuff];
+module.exports = [router, verifyStaff, isStaff];
