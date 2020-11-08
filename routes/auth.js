@@ -22,7 +22,7 @@ router.post('/register', async function (req, res) {
         const hashedPassword = await bcrypt.hash(req.body.password, 10);  // Allow 10 rounds of hash encryption; default is 10
         await JSON.stringify(client.query(`SELECT user_id
                                            FROM users
-                                           WHERE email_address = $1`, [req.body.username], function (err, result) {
+                                           WHERE email_address = $1`, [req.body.email], function (err, result) {
             if (result.rows[0]) {
                 req.flash('warning', "This email address is already registered. <a href='/login'>Log In!</a>");
                 res.redirect('/register');
