@@ -61,6 +61,7 @@ app.get('/logout', function (req, res, next) {
 //
 
 const PORT = process.env.PORT || 3000;
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
