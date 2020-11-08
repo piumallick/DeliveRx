@@ -9,7 +9,7 @@ const logger = require('morgan');
 // const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
 const staffsRouter = require('./routes/staff');
-const customRouter = require('./routes/customer');
+const customerRouter = require('./routes/customer');
 const dashboardRouter = require('./routes/dashboard');
 
 const app = express();
@@ -39,7 +39,7 @@ app.use(passport.session());
 app.use('/users', authRouter);
 app.use('/login', authRouter);
 app.use('/staff', staffsRouter);
-app.use('/customer', customRouter);
+app.use('/customer', customerRouter);
 app.use('/dashboard', dashboardRouter);
 
 
