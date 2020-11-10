@@ -1,6 +1,6 @@
 CREATE TABLE public.users
 (
-    user_id       integer NOT NULL,
+    user_id       UUID NOT NULL,
     first_name    character varying(255),
     last_name     character varying(255),
     email_address character varying(255),
@@ -10,11 +10,10 @@ CREATE TABLE public.users
     gender        character varying(1),
     dob           date    NOT NULL,
     enabled       character(1),
-    CONSTRAINT customers_pkey PRIMARY KEY (user_id),
+    CONSTRAINT users_pkey PRIMARY KEY (user_id),
     CONSTRAINT unique_email UNIQUE (email_address),
     CONSTRAINT unique_phone UNIQUE (phone_number)
 );
-
 
 
 CREATE TABLE public.role
@@ -27,7 +26,7 @@ CREATE TABLE public.role
 
 CREATE TABLE public.role_mapping
 (
-    user_id       integer NOT NULL,
+    user_id       UUID NOT NULL,
     role_id       integer NOT NULL,
     isactive      character varying(1),
     create_date   date,
@@ -98,6 +97,45 @@ CREATE TABLE public.medicine_category
 );
 
 
+CREATE TABLE public.stock
+(
+    stock_id integer NOT NULL,
+    supply_date date NOT NULL,
+    overhead_pct double precision NOT NULL,
+    total_cost numeric(20,10) NOT NULL DEFAULT 0,
+    supplier_id integer NOT NULL,
+    CONSTRAINT stock_pkey PRIMARY KEY (stock_id),
+    CONSTRAINT supplier_stock_details FOREIGN KEY (supplier_id)
+        REFERENCES public.supplier (supplier_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+CREATE TABLE public.has_stock_supply
+(
+    stock_id integer NOT NULL,
+    supplier_id integer NOT NULL,
+    unit_cost_price numeric(7,4) NOT NULL DEFAULT 0,
+    medicine_id integer NOT NULL,
+    manufacture_date date NOT NULL,
+    expiry_date date NOT NULL,
+    quantity integer NOT NULL DEFAULT 0,
+    total_cost numeric(20,10) NOT NULL DEFAULT 0,
+    CONSTRAINT has_stock_supply_pkey PRIMARY KEY (stock_id, supplier_id, medicine_id),
+    CONSTRAINT med_details FOREIGN KEY (medicine_id)
+        REFERENCES public.medicine (medicine_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT stock_details FOREIGN KEY (stock_id)
+        REFERENCES public.stock (stock_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT supplier_details FOREIGN KEY (supplier_id)
+        REFERENCES public.supplier (supplier_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
 CREATE TABLE public.orders
 (
     order_id   integer         NOT NULL,
@@ -128,6 +166,23 @@ CREATE TABLE public.order_items
         ON DELETE NO ACTION
 );
 
+CREATE TABLE medicine_category_price AS 
+(
+SELECT DISTINCT m.medicine_id, 
+medicine_name, 
+ROUND(hss.unit_cost_price, 2),
+c.category_name
+FROM medicine m INNER JOIN medicine_category mc
+ON m.medicine_id = mc.medicine_id
+INNER JOIN category c
+ON mc.category_id = c.category_id
+INNER JOIN has_stock_supply hss
+ON m.medicine_id = hss.medicine_id
+ORDER BY medicine_id
+);
+
+ALTER TABLE medicine_category_price ADD COLUMN picture text;
+
 --------------------------------------------------------------------------------------
 
 
@@ -154,6 +209,38 @@ VALUES (201, 'Rosta', 'Farzan', 'rosta.farzan@pitt.edu', crypt('1234567890', gen
 
 INSERT INTO public.role_mapping(user_id, role_id, isactive, create_date, modified_date)
 VALUES (201, 2, 'Y', NOW(), NOW());
+
+
+
+
+
+----------------------------------------------------------------------------------------
+
+-- UPDATE QUERIES
+
+UPDATE medicine_category_price
+SET picture = 'Ibuprofen_200_mg.jpeg'
+WHERE medicine_id = 1001;
+
+UPDATE medicine_category_price
+SET picture = 'Acetaminophen_325mg.jpeg'
+WHERE medicine_id = 1002;
+
+UPDATE medicine_category_price
+SET picture = 'Pediatric_Acetaminophen'
+WHERE medicine_id = 1003;
+
+UPDATE medicine_category_price
+SET picture = 'Naproxen_200mg.jpg'
+WHERE medicine_id = 1004;
+
+UPDATE medicine_category_price
+SET picture = 'Aspirin_81_mg_EC.jpeg'
+WHERE medicine_id = 1005;
+
+
+
+
 
 	
 

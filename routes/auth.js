@@ -4,6 +4,7 @@ const passport = require("passport");
 const router = express.Router();
 const {pool} = require('../dbConfig');
 const bcrypt = require('bcrypt');
+const uuid = require('uuid');
 app.use(express.static('public'));
 const LocalStrategy = require('passport-local').Strategy;
 
@@ -27,10 +28,11 @@ router.post('/register', async function (req, res) {
                 req.flash('warning', "This email address is already registered. <a href='/login'>Log In!</a>");
                 res.redirect('/register');
             } else {
-                let queryString = `INSERT INTO users (first_name, last_name, email_address, phone_number, address,
+                let queryString = `INSERT INTO users (user_id, first_name, last_name, email_address, phone_number,
+                                                      address,
                                                       gender, dob, passwd)
-                                   VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`;
-                client.query(queryString, [req.body.firstName, req.body.lastName, req.body.email, req.body.phone_number,
+                                   VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
+                client.query(queryString, [uuid.v4(), req.body.firstName, req.body.lastName, req.body.email, req.body.phone_number,
                     req.body.address, req.body.gender, req.body.dob, hashedPassword], function (err, result) {
                     if (err) {
                         console.log(err);
