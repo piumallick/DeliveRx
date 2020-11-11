@@ -2,11 +2,9 @@ const {pool} = require('./dbConfig');
 
 class DbService {
     static instance;
-
     static getDbServiceInstance() {
         return this.instance ? this.instance : new DbService();
     }
-
     //get data function
     async getAllData() {
         try {
