@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/inventory.css">
+    <!-- <link rel="stylesheet" href="stylesheet.css"> -->
+    <title>web app</title>
+</head>
+<body>
+<main>
+
+    <label>Id:</label>
+    <input type="number" id="id-input"><br><br>
+
+    <label>Name:</label>
+    <input type="text" id="name-input"><br><br>
+
+    <label>Price:</label>
+    <input type="text" id="price-input"><br><br>
+
+    <label>Classification:</label>
+    <input type="text" id="classification-input"><br><br>
+
+    <label>Picture:</label>
+    <input type="text" id="picture-input"><br><br>
+
+
+    <button id="add-name-btn">Add Name</button>
+
+
+    <br><br><br>
+    <div>
+        <input placeholder="search by id" id="search-input">
+        <button id="search-btn">Search</button>
+    </div>
+    <br><br>
+    <section hidden id="update-row">
+        <label>Name:</label>
+        <input type="text" id="update-name-input">
+        <label>Price:</label>
+        <input type="text" id="update-price-input">
+        <label>Classification:</label>
+        <input type="text" id="update-classification-input">
+
+        <button id="update-row-btn">Update</button>
+    </section>
+
+    <div>
+        <button id="back-btn">Go Back</button>
+    </div>
+
+
+    <table id="table">
+        <thead>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Classification</th>
+        <th>Picture</th>
+        <th>Date Added</th>
+        <th>Delete</th>
+        <th>Edit</th>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+
+</main>
+<script type="text/javascript" src="./js/view_medicines.js"></script>
+</body>
+</html>
