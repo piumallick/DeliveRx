@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.login-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 550px;
+    padding: 80px 40px;
+    background: #FFFDE7;
+}
+
+.register-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 800px;
+    padding: 80px 40px;
+    background: #FFFDE7;
+}
+
+
+.avatar {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    top: calc(-240px / 2);
+    left: calc(50% - 50px);
+}
+
+
+.login-form h2 {
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    text-transform: unset;
+}
+
+.login-form p {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: black;
+}
+
+.login-form input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/*
+.login-form input[type=email] {
+    border: none;
+    border-bottom: 1px solid;
+    background: transparent;
+    outline: none;
+    height: 35px;
+    font-size: 15px;
+}
+
+.login-form input[type=password]{
+    border: none;
+    border-bottom: 1px solid;
+    background: transparent;
+    outline: none;
+    height: 35px;
+    font-size: 15px;
+}
+*/
+input[type=checkbox] {
+    width: 15%;
+}
+
+
+body:before {
+    content: "";
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../img/background.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    background-size: cover;
+    -webkit-filter: blur(10px);
+    -moz-filter: blur(10px);
+}
+
+.nav-link {
+    font-family: "Kaushan Script", cursive;
+    color: var(--mainBlack);
+    font-size: 1.5rem;
+    transition: all 0.5s ease-in-out;
+}
+
+.banner-title {
+    font-family: "Kaushan Script", cursive;
+    color: var(--info);
+    font-size: 4rem;
+}
+
+/* Login page */
+.input-container {
+    display: -ms-flexbox; /* IE10 */
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.icon {
+    padding: 10px;
+    background: #00ACC1;
+    color: white;
+    min-width: 50px;
+    max-height: 50px;
+    text-align: center;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 2px solid #00ACC1;
+}
+
+#button {
+    width: 100%;
+    text-align: center;
+}
+
+.inner {
+    display: inline-block;
+}

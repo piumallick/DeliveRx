@@ -1,0 +1,17 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+.cold_and_cough_cards {
+    width: 30%;
+    background-color: grey;
+}
+
+.image img {
+    width: 50%;
+}
+
+.title {
+    text-align: center;
+}
