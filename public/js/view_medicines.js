@@ -24,6 +24,7 @@ const searchBtn = document.querySelector('#search-btn');
 const backBtn = document.querySelector('#back-btn');
 //go back
 
+
 backBtn.onclick = function () {
     location.reload();
 
