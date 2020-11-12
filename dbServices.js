@@ -5,7 +5,7 @@ class DbService {
     static getDbServiceInstance() {
         return this.instance ? this.instance : new DbService();
     }
-    //get data function
+    //get data medicines
     async getAllData() {
         try {
             // promise where we handle the query,if query successful resolve otherwise reject,if reject go straight to the catch block
@@ -24,8 +24,27 @@ class DbService {
             console.log(error);
         }
     }
+    //get all suppliers
+    async getAllDataSuppliers() {
+        try {
+            // promise where we handle the query,if query successful resolve otherwise reject,if reject go straight to the catch block
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM supplier;";
 
+                pool.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            //response is a promise object
+            // console.log(response); 
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
+//insert medicine name 
     async insertNewName(medicine_id, medicine_name, round, category_name, picture) {
         try {
             const dateAdded = new Date();
@@ -54,13 +73,42 @@ class DbService {
         }
     }
 
+    //insert supplier Name
+    async insertNewSuppliersName(supplier_id, supplier_name, address, phonenumber, email) {
+        try {
+            const dateAdded = new Date();
+            const response = await new Promise((resolve, reject) => {
+                const queryString = `INSERT INTO supplier (supplier_id, supplier_name,address, phone_number, email_address)
+                                     VALUES ($1, $2, $3, $4, $5);`
+
+                pool.query(queryString, [supplier_id, supplier_name,address, phonenumber, email], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            // console.log(response); 这个插入数据的response是空的
+            // return response;
+
+            return {
+
+                supplier_id: supplier_id,
+                supplier_name: supplier_name,
+                address: address,
+                phonenumber: phonenumber,
+                email: email,
+            };
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    // delete for medicine
     async deleteRowById(medicine_id) {
         try {
             let id = parseInt(medicine_id, 10); //10 is base
             const response = await new Promise((resolve, reject) => {
                 const query = "DELETE FROM medicine_category_price WHERE medicine_id =$1 ;"
 
-                pool.query(query, [medicine_idid], (err, result) => {
+                pool.query(query, [medicine_id], (err, result) => {
                     if (err) reject(new Error(err.message));
                     resolve(result.rowCount);//rowCount 是要被删除的那一行
                 })
@@ -72,7 +120,26 @@ class DbService {
             return false;
         }
     }
+    //delete for suppliers
+    async deleteRowByIdSuppliers(supplier_id) {
+        try {
+            let id = parseInt(supplier_id, 10); //10 is base
+            const response = await new Promise((resolve, reject) => {
+                const query = "DELETE FROM supplier WHERE supplier_id =$1 ;"
 
+                pool.query(query, [supplier_id], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.rowCount);//rowCount 是要被删除的那一行
+                })
+            });
+            // console.log(response);
+            return response === 1 ? true : false;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+    //update for medicine
     async updateNameById(medicine_id, medicine_name, round, category_name) {
         console.log(medicine_id)
         try {
@@ -94,8 +161,30 @@ class DbService {
             return false;
         }
     }
+    //update for suppliers
+    async updateNameByIdSuppliers(supplier_id, supplier_name,address, phonenumber, email) {
+        
+        try {
+            supplier_id = parseInt(supplier_id, 10);
+            const response = await new Promise((resolve, reject) => {
+                const query2 = "UPDATE supplier SET supplier_name = $2 ,address=$3,phone_number=$4,email_address =$5 WHERE supplier_id = $1;";
 
+                pool.query(query2, [supplier_id, supplier_name, address, phonenumber, email], (err, result) => {
+                    if (err) reject(new Error(err.message));
 
+                    resolve(result.rowCount);
+                })
+
+            });
+            // console.log(response)
+            return response === 1 ? true : false;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
+//search for medicine
     async searchById(medicine_id) {
         try {
             const response = await new Promise((resolve, reject) => {
@@ -112,7 +201,23 @@ class DbService {
             console.log(error);
         }
     }
+//search for Supplier
+async searchByIdSuppliers(supplier_id) {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = "SELECT * FROM supplier WHERE supplier_id = $1;";
 
+            pool.query(query, [supplier_id], (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+        });
+        console.log(response)
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 }
 

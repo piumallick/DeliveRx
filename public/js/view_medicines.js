@@ -21,26 +21,31 @@ document.querySelector('table tbody').addEventListener('click', function (event)
 
 const updateBtn = document.querySelector('#update-row-btn');
 const searchBtn = document.querySelector('#search-btn');
-const backBtn = document.querySelector('#back-btn');
+const cancelBtnAdd = document.querySelector('#cancelBtnAdd');
+const cancelBtnUpdate = document.querySelector('#cancelBtnUpdate');
 //go back
 
-
-backBtn.onclick = function () {
+cancelBtnAdd.onclick = function () {
     location.reload();
 
 }
+cancelBtnUpdate.onclick = function () {
+    location.reload();
+
+}
+
 
 //search
 searchBtn.onclick = function () {
     const searchValue = document.querySelector('#search-input').value;
 
-    fetch('http://localhost:3000/staff/view_medicines/search/' + searchValue)
+    fetch('./staff/view_medicines/search/' + searchValue)
         .then(response => response.json())
         .then(data => loadHTMLTable(data['data']['rows']));
 }
 
 function deleteRowById(id) {
-    fetch('http://localhost:3000/staff/view_medicines/delete/' + id, {
+    fetch('./staff/view_medicines/delete/' + id, {
         method: 'DELETE'
     })
         .then(response => response.json())
@@ -58,6 +63,8 @@ function handleEditRow(id) {
     document.querySelector('#update-row-btn').dataset.id = id;
     // console.log(id)
 }
+
+
 
 //update
 updateBtn.onclick = function () {
@@ -88,7 +95,13 @@ updateBtn.onclick = function () {
 }
 
 //create
+const addNameHidden = document.querySelector('#add-name-hidden');
 const addBtn = document.querySelector('#add-name-btn');
+
+addNameHidden.onclick = function () {
+    const addSection = document.querySelector('#add-row');
+    addSection.hidden = false;
+}
 
 addBtn.onclick = function () {
     const idInput = document.querySelector('#id-input');
@@ -177,7 +190,7 @@ function loadHTMLTable(data) {
         tableHtml += `<td>${round}</td>`;
         tableHtml += `<td>${category_name}</td>`;
         tableHtml += `<td><img src="img-cart/${picture}"></td>`;
-        tableHtml += `<td>${new Date(dateAdded).toLocaleString()}</td>`;
+        // tableHtml += `<td>${new Date(dateAdded).toLocaleString()}</td>`;
         tableHtml += `<td><button class="delete-row-btn" data-id=${medicine_id}>Delete</td>`;
         tableHtml += `<td><button class="edit-row-btn" data-id=${medicine_id}>Edit</td>`;
         tableHtml += "</tr>";
