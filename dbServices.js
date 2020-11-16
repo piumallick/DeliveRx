@@ -47,12 +47,12 @@ class DbService {
 //insert medicine name 
     async insertNewName(medicine_id, medicine_name, round, category_name, picture) {
         try {
-            const dateAdded = new Date();
+            const dateadded = new Date();
             const response = await new Promise((resolve, reject) => {
                 const queryString = `INSERT INTO medicine_category_price (medicine_id, medicine_name, round, category_name, picture, dateadded)
                                      VALUES ($1, $2, $3, $4, $5, $6);`
 
-                pool.query(queryString, [medicine_id, medicine_name, round, category_name, picture, dateAdded], (err, results) => {
+                pool.query(queryString, [medicine_id, medicine_name, round, category_name, picture, dateadded], (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 })
@@ -66,7 +66,7 @@ class DbService {
                 round: round,
                 category_name: category_name,
                 picture: picture,
-                dateAdded: dateAdded
+                dateadded: dateadded
             };
         } catch (error) {
             console.log(error);
@@ -76,7 +76,7 @@ class DbService {
     //insert supplier Name
     async insertNewSuppliersName(supplier_id, supplier_name, address, phonenumber, email) {
         try {
-            const dateAdded = new Date();
+            const dateadded = new Date();
             const response = await new Promise((resolve, reject) => {
                 const queryString = `INSERT INTO supplier (supplier_id, supplier_name,address, phone_number, email_address)
                                      VALUES ($1, $2, $3, $4, $5);`
@@ -124,6 +124,7 @@ class DbService {
     async deleteRowByIdSuppliers(supplier_id) {
         try {
             let id = parseInt(supplier_id, 10); //10 is base
+            console.log(id);
             const response = await new Promise((resolve, reject) => {
                 const query = "DELETE FROM supplier WHERE supplier_id =$1 ;"
 
@@ -201,23 +202,74 @@ class DbService {
             console.log(error);
         }
     }
-//search for Supplier
-async searchByIdSuppliers(supplier_id) {
-    try {
-        const response = await new Promise((resolve, reject) => {
-            const query = "SELECT * FROM supplier WHERE supplier_id = $1;";
 
-            pool.query(query, [supplier_id], (err, results) => {
-                if (err) reject(new Error(err.message));
-                resolve(results);
-            })
-        });
-        console.log(response)
-        return response;
-    } catch (error) {
-        console.log(error);
+    //search for Supplier
+    async searchByIdSuppliers(supplier_id) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM supplier WHERE supplier_id = $1;";
+
+                pool.query(query, [supplier_id], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            console.log(response)
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
     }
-}
+
+
+    //get order data
+    async getAllDataOrders() {
+        try {
+            // promise where we handle the query,if query successful resolve otherwise reject,if reject go straight to the catch block
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM orders;";
+
+                pool.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            //response is a promise object
+            // console.log(response); 
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    //inser order history
+    async insertNewOrderName(order_name, order_classification, order_price, picture) {
+        try {
+            const dateadded = new Date().toLocaleString();
+            // console.log(order_name, order_classification, order_price, picture,dateadded);
+            
+
+            const response = await new Promise((resolve, reject) => {
+                const queryString = `INSERT INTO orders (order_name, order_classification, dateadded, picture, order_price)
+                                     VALUES ($1, $2, $3, $4, $5);`
+
+                pool.query(queryString, [order_name, order_classification,dateadded,picture,order_price], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            return {
+                order_name: order_name,
+                order_classification: order_classification,
+                order_price: order_price,
+                picture: picture,
+                dateadded: dateadded,
+            };
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 }
 

@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
 //function for delete and edit, we specify by event target
 document.querySelector('table tbody').addEventListener('click', function (event) {
     if (event.target.className === "delete-row-btn") {
+        console.log(event.target.dataset.id)
         deleteRowById(event.target.dataset.id);//pass row id
     }
     if (event.target.className === "edit-row-btn") {

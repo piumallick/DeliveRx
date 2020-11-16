@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
 document.querySelector('table tbody').addEventListener('click', function (event) {
     if (event.target.className === "delete-row-btn") {
         deleteRowById(event.target.dataset.id);//pass row id
+        console.log(event.target.dataset.id);
     }
     if (event.target.className === "edit-row-btn") {
         handleEditRow(event.target.dataset.id);
@@ -51,6 +52,7 @@ function deleteRowById(id) {
         .then(response => response.json())
         //just return true or false
         .then(data => {
+            console.log(data)
             if (data.success) {
                 location.reload();
             }
@@ -136,11 +138,10 @@ addBtn.onclick = function () {
 }
 
 function insertRowIntoTable(data) {
-    console.log(data);
     const table = document.querySelector('table tbody');
-    // check if no data
+    console.log(table)
     const isTableData = table.querySelector('.no-data');
-
+    console.log(table)
     let tableHtml = "<tr>";
 
     for (var key in data) {
@@ -173,6 +174,7 @@ function insertRowIntoTable(data) {
 function loadHTMLTable(data) {
     console.log(data);
     const table = document.querySelector('table tbody');
+    console.log(table)
 
 // no data we will have to remove that table using table.innerHTML
 

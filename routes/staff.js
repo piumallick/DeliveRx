@@ -76,6 +76,7 @@ router.post('/view_suppliers/insert', (request, response) => {
     const result = db.insertNewSuppliersName(id,name,address,phonenumber,email);
     result
     .then(data => response.json({ data: data}))
+   
     .catch(err => console.log(err));
 });
 

@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/inventory.css">
 </head>
-<body>
+
 
 <header>
     <nav class="navbar navbar-expand-lg px-4">
@@ -35,116 +35,116 @@
     </nav>
 </header>
 <body>
-<main>
-    <div class="staff_view">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1 class="text-capitalize">
-                        <strong class="banner-title ">View modify medicines</strong>
-                    </h1>
+    <main>
+        <div class="staff_view">
+            <div class="container">
+                <div class="row">
                     <div class="col-md-12">
-                        <!-- <div class="right">
-                            <a href="#" class="tile green">
-                                <h3 class="btn banner-link my-lg-3">Store Statistics</h3>
-                            </a>
-                        </div> -->
+                        <h1 class="text-capitalize">
+                            <strong class="banner-title ">View modify medicines</strong>
+                        </h1>
+                        <div class="col-md-12">
+                            <!-- <div class="right">
+                                <a href="#" class="tile green">
+                                    <h3 class="btn banner-link my-lg-3">Store Statistics</h3>
+                                </a>
+                            </div> -->
+                        </div>
                     </div>
+                    <br>
+                    <h3>
+                        <strong>You can add delete update search the medicines</strong>
+                    </h3>
+                    <br>
                 </div>
-                <br>
-                <h3>
-                    <strong>You can add delete update search the medicines</strong>
-                </h3>
-                <br>
+        
+                <div class="row">
+                    <div class="col-sm-4">
+                        <a href="./view_medicines.html" class="tile purple">
+                            <h3 class="btn banner-link my-lg-3">View/Modify Medicine List</h3>
+                            <br>
+                        </a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="./view_suppliers.html" class="tile orange">
+                            <h3 class="btn banner-link my-lg-3">View/Modify Supplier List</h3>
+                        </a>
+                    </div>
+                
+        
+                </div>
             </div>
-    
-            <div class="row">
-                <div class="col-sm-4">
-                    <a href="./view_medicines.html" class="tile purple">
-                        <h3 class="btn banner-link my-lg-3">View/Modify Medicine List</h3>
-                        <br>
-                    </a>
-                </div>
-                <div class="col-sm-4">
-                    <a href="./view_suppliers.html" class="tile orange">
-                        <h3 class="btn banner-link my-lg-3">View/Modify Supplier List</h3>
-                    </a>
-                </div>
-            
-    
+            <div>
+                <input placeholder="search by id" id="search-input">
+                <button id="search-btn">Search</button>
+                <button id="add-name-hidden">Add New Medicine</button>
             </div>
         </div>
-        <div>
+        <!-- <div>
             <input placeholder="search by id" id="search-input">
             <button id="search-btn">Search</button>
             <button id="add-name-hidden">Add New Medicine</button>
-        </div>
-    </div>
-    <!-- <div>
-        <input placeholder="search by id" id="search-input">
-        <button id="search-btn">Search</button>
-        <button id="add-name-hidden">Add New Medicine</button>
-    </div> -->
+        </div> -->
+        
+        <section hidden id="add-row">
+            <label>Id:</label>
+            <input type="number" id="id-input"><br><br>
+
+            <label>Name:</label>
+            <input type="text" id="name-input"><br><br>
+
+            <label>Price:</label>
+            <input type="text" id="price-input"><br><br>
+
+            <label>Classification:</label>
+            <input type="text" id="classification-input"><br><br>
+
+            <label>Picture:</label>
+            <input type="text" id="picture-input"><br><br>
+            <button id="add-name-btn">confirm</button>
+            <button id="cancelBtnAdd">Cancel</button>
+        </section>
+        
     
-    <section hidden id="add-row">
-        <label>Id:</label>
-        <input type="number" id="id-input"><br><br>
+        
+        <br><br>
+        <section hidden id="update-row">
+            <label>Name:</label>
+            <input type="text" id="update-name-input">
+            <br>
+            <label>Price:</label>
+            <input type="text" id="update-price-input">
+            <br>
+            <label>Classification:</label>
+            <input type="text" id="update-classification-input">
+            <br>
 
-        <label>Name:</label>
-        <input type="text" id="name-input"><br><br>
+            <button id="update-row-btn">Update</button>
+            <button id="cancelBtnUpdate">Cancel</button>
+        </section>
 
-        <label>Price:</label>
-        <input type="text" id="price-input"><br><br>
-
-        <label>Classification:</label>
-        <input type="text" id="classification-input"><br><br>
-
-        <label>Picture:</label>
-        <input type="text" id="picture-input"><br><br>
-        <button id="add-name-btn">confirm</button>
-        <button id="cancelBtnAdd">Cancel</button>
-    </section>
-    
-  
-    
-    <br><br>
-    <section hidden id="update-row">
-        <label>Name:</label>
-        <input type="text" id="update-name-input">
-        <br>
-        <label>Price:</label>
-        <input type="text" id="update-price-input">
-        <br>
-        <label>Classification:</label>
-        <input type="text" id="update-classification-input">
-        <br>
-
-        <button id="update-row-btn">Update</button>
-        <button id="cancelBtnUpdate">Cancel</button>
-    </section>
-
-    <!-- <div>
-        <button id="back-btn">Cancel</button>
-    </div> -->
+        <!-- <div>
+            <button id="back-btn">Cancel</button>
+        </div> -->
 
 
-    <table id="table">
-        <thead>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Classification</th>
-        <th>Picture</th>
-        <!-- <th>Date Added</th> -->
-        <th>Delete</th>
-        <th>Edit</th>
-        </thead>
-        <tbody></tbody>
-    </table>
-    <a href="http://localhost:3000/dashboard" target="_blank" rel="noopener noreferrer">Return to Stuff Dashboard</a>
-    <!-- <button id="return-button">Return to Stuff Dashboard</button> -->
+        <table id="table">
+            <thead>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Classification</th>
+            <th>Picture</th>
+            <!-- <th>Date Added</th> -->
+            <th>Delete</th>
+            <th>Edit</th>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <a href="http://localhost:3000/dashboard" target="_blank" rel="noopener noreferrer">Return to Stuff Dashboard</a>
+        <!-- <button id="return-button">Return to Stuff Dashboard</button> -->
 
-</main>
-<script type="text/javascript" src="./js/view_medicines.js"></script>
+    </main>
+    <script type="text/javascript" src="./js/view_medicines.js"></script>
 </body>
 </html>

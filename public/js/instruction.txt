@@ -1,0 +1,7 @@
+store the cart in the user session
+we need another store to session
+connect-pg-simple
+
+
+store-item-name
+store-item-value

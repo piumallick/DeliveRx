@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const router = express.Router();
 const {pool} = require('../dbConfig');
+const dbService = require('../dbServices');
 app.use(express.static('public'));
 const auth = require('./auth');
 const getUser = auth[2];
@@ -10,6 +11,8 @@ const isAuthenticated = auth[3];
 const httpStatusCodes = require('http-status-codes');
 const reasonPhrases = httpStatusCodes.ReasonPhrases;
 const statusCodes = httpStatusCodes.StatusCodes;
+const rootFinder = require('../rootFinder');
+app.engine("html", require("ejs").renderFile);
 
 router.get('/', verifyCustomer, function (req, res, next) {
     res.render('dashboard_customer', {
@@ -18,6 +21,50 @@ router.get('/', verifyCustomer, function (req, res, next) {
         messages: {danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success')}
     });
 });
+// view order history
+router.get('/orderhistory', function (req, res) {
+    let path = rootFinder() + "/public/order_history.html";
+    return res.status(200).sendFile(path, (err => {
+        console.log(err);
+    }));
+});
+
+
+router.get('/orderhistory/getAll', (request, response) => {
+    const db = dbService.getDbServiceInstance();
+    const result = db.getAllDataOrders();
+    // response.json({
+    //     success:true
+    // })
+    result//result is a promise object 
+        .then(data => response.json({data: data}))
+        .catch(err => console.log(err));
+})
+
+router.post('/orderhistory/insert', (request, response) => {
+    //img name class price
+    const row  = request.body;
+    // console.log("hello")
+    // console.log(row)
+    const classification = row.classification
+    const name = row.name
+    const price = row.price
+    const picture = row.picture
+    
+    const db = dbService.getDbServiceInstance();
+    
+    const result = db.insertNewOrderName(name,classification,price,picture);//insert is async function need to use then
+    // console.log("result")
+    // console.log(result)
+    result
+    .then(data => response.json({ data: data}))
+    .catch(err => console.log(err));
+ 
+    
+});
+
+
+
 
 function verifyCustomer(req, res, next) {
     if (isAuthenticated(req)) {
