@@ -134,6 +134,7 @@ addBtn.onclick = function () {
         body: JSON.stringify({id: id, name: name, address: address, phonenumber: phonenumber, email: email})
     })
         .then(response => response.json())
+        .then(data=>console.log(data))
         .then(data => insertRowIntoTable(data['data']));
 
 
