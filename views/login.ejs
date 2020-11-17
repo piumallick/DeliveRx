@@ -51,6 +51,12 @@ JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
                                required=""/>
                         <!--<span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>-->
                     </div>
+                    <% if (error) { %>
+                        <div id="err-div" class="error-message">
+                            <%= error %>
+                        </div>
+                    <% } %>
+                    <br>
                     <div><input type="checkbox" value="lsRememberMe" id="rememberMe">Remember Me <br></div>
 
                     <div class="button">
@@ -65,7 +71,7 @@ JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
                         <p tabindex="0">
                             <!--<a href="change_password.html">Change Password?</a><br>-->
 
-                        <p><a href="./forget_password.html">Forgot Password?</a><br>
+                        <!--<p><a href="./forget_password.html">Forgot Password?</a><br>-->
                             New User? <a href="./register">Sign Up!</a></p>
 
                     </div>

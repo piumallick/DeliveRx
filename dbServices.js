@@ -10,7 +10,7 @@ class DbService {
         try {
             // promise where we handle the query,if query successful resolve otherwise reject,if reject go straight to the catch block
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM medicine_category_price;";
+                const query = "SELECT * FROM medicine_category_price ORDER BY medicine_id;";
 
                 pool.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
@@ -29,7 +29,7 @@ class DbService {
         try {
             // promise where we handle the query,if query successful resolve otherwise reject,if reject go straight to the catch block
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM supplier;";
+                const query = "SELECT * FROM supplier ORDER BY supplier_id;";
 
                 pool.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
@@ -70,6 +70,23 @@ class DbService {
             };
         } catch (error) {
             console.log(error);
+        }
+    }
+
+    //check for supplier
+    async checkSupplier(supplier_id, supplier_name, address, phonenumber, email) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const queryString = `SELECT * from supplier WHERE (supplier_id = $1 OR email_address = $2);`
+
+                pool.query(queryString, [supplier_id, supplier_name,address, phonenumber, email], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            return { found: 1 };
+        } catch (error) {
+            return { found: 0 };
         }
     }
 
@@ -130,11 +147,12 @@ class DbService {
 
                 pool.query(query, [supplier_id], (err, result) => {
                     if (err) reject(new Error(err.message));
-                    resolve(result.rowCount);//rowCount 是要被删除的那一行
+                    if (result) resolve(result.rowCount);//rowCount 是要被删除的那一行
+                    else resolve(0);
                 })
             });
             // console.log(response);
-            return response === 1 ? true : false;
+            return response === 1;
         } catch (error) {
             console.log(error);
             return false;
@@ -172,13 +190,14 @@ class DbService {
 
                 pool.query(query2, [supplier_id, supplier_name, address, phonenumber, email], (err, result) => {
                     if (err) reject(new Error(err.message));
-
-                    resolve(result.rowCount);
+                    if (result) {
+                        resolve(result.rowCount);
+                    }
                 })
 
             });
             // console.log(response)
-            return response === 1 ? true : false;
+            return response === 1;
         } catch (error) {
             console.log(error);
             return false;

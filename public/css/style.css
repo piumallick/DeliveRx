@@ -146,7 +146,7 @@ main, .cart-info__icon {
     border-color: var(--mainPink) !important;
 }
 
-.btn-black {
+.delete-row-btn .btn-black {
     color: var(--mainBlack) !important;
     border-color: var(--mainBlack) !important;
 }
@@ -302,6 +302,7 @@ main, .cart-info__icon {
     text-align: center;
 }
 
+/*
 .form-search input[type=text] {
     width: 130px;
     box-sizing: border-box;
@@ -309,7 +310,7 @@ main, .cart-info__icon {
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
-    /*background-image: url('../images/search_icon.png');*/
+
     background-position: 10px 10px;
     background-repeat: no-repeat;
     padding: 12px 20px 12px 40px;
@@ -317,10 +318,11 @@ main, .cart-info__icon {
     transition: width 0.4s ease-in-out;
 }
 
+
 input[type=text]:focus {
     width: 100%;
 }
-
+*/
 .other_login_info p {
     color: black;
 }
@@ -417,16 +419,13 @@ SVG Icons - svgicons.sparkk.fr
     vertical-align: middle;
 }
 
-.staff_view div {
-    background-color: #FFFDE7;
-}
 
 div.right {
     text-align: right;
 }
 
 div.about_us {
-    font-family: helvetica, arial, sans-serif;
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     margin: 2em;
 }
 
@@ -437,3 +436,4 @@ div.about_us {
     border: 3px solid #00ACC1;
     padding: 10px;
 }
+

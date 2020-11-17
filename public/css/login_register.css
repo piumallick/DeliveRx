@@ -151,3 +151,13 @@ body:before {
 .inner {
     display: inline-block;
 }
+
+.error-message {
+    border: none;
+    background: #f5c6cb;
+    outline: none;
+    height: 25px;
+    font-size: 15px;
+    margin: 5px;
+    color: #b21f2d;
+}
