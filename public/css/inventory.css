@@ -1,11 +1,13 @@
+/*
 main {
     width: 50%;
     margin: 50px auto;
     text-align: center;
 }
+*/
 
-table {
-    margin: 50px auto;
+body {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 table, th, td {
@@ -15,4 +17,181 @@ table, th, td {
 
 th, td {
     padding: 5px;
+}
+
+#table {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#table td,
+#table th {
+    border: 3px solid #ddd;
+    padding: 6px;
+}
+
+#table tr:nth-child(even) {
+    background-color: #fff3cd;
+}
+
+#table tr:hover {
+    background-color: #abdde5;
+}
+
+#table th {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    background-color: #17a2b8;
+    color: white;
+}
+
+
+.edit-row-btn {
+    color: var(--mainBlack) !important;
+    border-color: var(--mainBlack) !important;
+}
+
+.edit-row-btn:hover {
+    color: var(--mainPink) !important;
+    background: var(--mainBlack) !important;
+}
+
+
+.delete-row-btn {
+    color: var(--mainPink) !important;
+    border-color: var(--mainPink) !important;
+}
+
+.delete-row-btn:hover {
+    background: var(--mainPink) !important;
+    color: var(--mainBlack) !important;
+}
+
+.search {
+    align-items: center;
+    display: inline-block;
+}
+
+.table-responsive {
+    text-align: center;
+}
+
+.col-md-8 {
+    align-items: center;
+    text-align: center;
+}
+
+#searchWrapper {
+    position: relative;
+}
+
+/*
+#searchWrapper::after {
+    content: '🔍';
+    position: absolute;
+    top: 7px;
+    right: -10px;
+}
+*/
+#searchBar {
+    width: 50%;
+    height: 32px;
+    border-radius: 3px;
+    border: 1px solid #eaeaea;
+    padding: 0px;
+    font-size: 14px;
+}
+
+#search-btn {
+    color: var(--mainBlack);
+    border: 0.2rem solid var(--mainBlack);
+}
+
+#search-btn:hover {
+    background: var(--mainBlack);
+    color: var(--mainPink);
+}
+
+#add-name-hidden {
+    color: var(--mainBlack);
+    border: 0.2rem solid var(--mainBlack);
+}
+
+#add-name-hidden:hover {
+    background: var(--mainBlack);
+    color: var(--mainPink);
+}
+
+#update-row-btn {
+    color: var(--mainBlack);
+    border: 0.2rem solid var(--mainBlack);
+}
+
+#update-row-btn:hover {
+    background: var(--mainBlack);
+    color: var(--mainPink);
+}
+
+#cancelBtnUpdate {
+    color: var(--mainBlack);
+    border: 0.2rem solid var(--mainBlack);
+}
+
+#cancelBtnUpdate:hover {
+    background: var(--mainBlack);
+    color: var(--mainPink);
+}
+
+#add-name-btn {
+    color: var(--mainBlack);
+    border: 0.2rem solid var(--mainBlack);
+}
+
+#add-name-btn:hover {
+    background: var(--mainBlack);
+    color: var(--mainPink);
+}
+
+#cancelBtnAdd {
+    color: var(--mainBlack);
+    border: 0.2rem solid var(--mainBlack);
+}
+
+#cancelBtnAdd:hover {
+    background: var(--mainBlack);
+    color: var(--mainPink);
+}
+
+.outset {
+    border-style: outset;
+    background-color: #FFFDE7;
+    width: 70%;
+}
+
+input[type=text]:focus {
+    background-color: #abdde5;
+}
+
+input[type=number]:focus {
+    background-color: #abdde5;
+}
+
+input[type=email]:focus {
+    background-color: #abdde5;
+}
+
+#searchWrapper:focus {
+    border: 2px solid #00ACC1;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    outline: none;
+}
+
+.input-field:focus {
+    border: 2px solid #00ACC1;
 }
