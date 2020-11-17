@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- bootstrap css -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <!-- main css -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- font awesome -->
+  <link rel="stylesheet" href="css/all.css">
+  <title>DeliveRx - Home Page</title>
+  <style>
+  </style>
+</head>
+
+<body>
+  <!-- header -->
+  <header>
+    <!-- navbar  -->
+    <nav class="navbar navbar-expand-lg px-4">
+      <a class="navbar-brand"><img src="img/logo.jpg" alt="DeliveRx Logo"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNav">
+        <span class="toggler-icon"><i class="fas fa-bars"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="myNav">
+        <ul class="navbar-nav mx-auto text-capitalize">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link " href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#store">Store</a>
+          </li>
+        </ul>
+        <div class="nav-info-items d-none d-lg-flex ">
+          <!-- single info -->
+          <div class="nav-info align-items-center d-flex justify-content-between mx-lg-5">
+            <span class="info-icon mx-lg-3"><i class="fas fa-phone"></i></span>
+            <p class="mb-0">Call: +1 412 999 666</p>
+          </div>
+          <div>
+            <ul>
+              <!--<a class="nav-link" target="popup"
+                 onclick="window.open('/users/login', 'name', 'width=500,height=650')">Login</a> -->
+              <a class="nav-link" href="/users/login">Login</a>
+            </ul>
+          </div>
+          <!-- end of single info -->
+          <!-- single info -->
+          <div id="cart-info" >
+          <!-- <div id="cart-info" class="nav-info align-items-center cart-info d-flex justify-content-between mx-lg-5"> -->
+            <!-- <span class="cart-info__icon mr-lg-3"><i class="fas fa-shopping-cart"></i></span>
+            <p class="mb-0 text-capitalize"><span id="item-count">0</span> items - $<span class="item-total">0</span> -->
+            <!-- </p> -->
+          </div>
+          <!-- end of single info -->
+        </div>
+      </div>
+    </nav>
+    <!-- end of nav -->
+    <!-- banner  -->
+    <div class="container-fluid">
+      <div class="row max-height justify-content-center align-items-center">
+        <div class="col-10 mx-auto banner text-center">
+          <h1 class="text-capitalize"><strong class="banner-title ">welcome to DeliveRx</strong></h1>
+          <a href="#store" class="btn banner-link text-uppercase my-2">explore</a>
+
+        </div>
+        <div id="cart" class="cart">
+        
+          <div class="cart-total-container d-flex justify-content-around text-capitalize mt-5">
+            <h5>total</h5>
+            <h5> $ <strong id="cart-total" class="font-weight-bold">0.00</strong> </h5>
+          </div>
+          <!--end cart total -->
+          <!-- cart buttons -->
+          <div class="cart-buttons-container mt-3 d-flex justify-content-between">
+            <a href="#" id="clear-cart" class="btn btn-outline-secondary btn-black text-uppercase">clear cart</a>
+            <a href="#" class="btn btn-outline-secondary text-uppercase btn-pink">checkout</a>
+          </div>
+          <!--end of  cart buttons -->
+          <!--  -->
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!--end of  banner  -->
+  </header>
+  <!-- header -->
+  <!-- about us -->
+  <section class="about py-5" id="about">
+    <div class="about_us">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-10 mx-auto col-md-6 my-5">
+            <h1 class="text-capitalize"><strong class="banner-title ">about us</strong></h1>
+
+            <!--<a href="#" class="btn btn-outline-secondary btn-black text-uppercase ">explore</a>-->
+            <p>Hello! <br><br>
+
+              We are a local online-medicine store based out of Oakland, Pittsburgh.<br>
+              We offer No-Touch Hassle-Free Over-The-Counter medicine delivery - at your doorstep.<br>
+
+              During the pandemic times, let's build a healthier and safer community - together.<br><br><br>
+            </p>
+
+          </div>
+
+          <div class="col-10 mx-auto col-md-6 align-self-center my-5">
+            <div class="about-img__container">
+              <img src="img/about.jpg" class="img-fluid" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- end of about us -->
+
+
+  <!-- store -->
+  <section id="store" class="store py-5">
+    <div class="container">
+      <!-- section title -->
+      <div class="row">
+        <div class="col-10 mx-auto col-sm-6 text-center">
+          <h1 class="text-capitalize"><strong class="banner-title ">Shop by Category</strong></h1>
+        </div>
+      </div>
+      <!-- end of section title -->
+
+
+      <!--filter buttons -->
+      <div class="row">
+        <div class=" col-lg-8 mx-auto d-flex justify-content-around my-2 sortBtn flex-wrap">
+          <a href="http://localhost:3000/" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="all"> All</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2"
+             data-filter="Cold&Cough">Cold/Cough</a>
+          <a href="http://localhost:3000/firstaid" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="First Aid">First Aid</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2"
+             data-filter="Pain&Fever">Pain/Fever</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Skin Care">Skin Care</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Digestive Health">Digestive
+            Health</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2"
+             data-filter="Supplements">Supplements</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Kids">Kids</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Allergy/Congestion">Allergy/Congestion</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Feminine Health">Feminine
+            Health</a>
+          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Feminine Health">Hygiene/Other</a>
+        </div>
+      </div>
+
+      <!-- form search section -- begin -->
+      <div class="form-search">
+        <input id="search" type="text" name="q" class="search" placeholder="Search.....">
+        <svg class="svg-icon" viewBox="0 0 20 20">
+          <path d="M18.125,15.804l-4.038-4.037c0.675-1.079,1.012-2.308,1.01-3.534C15.089,4.62,12.199,1.75,8.584,1.75C4.815,1.75,1.982,4.726,2,8.286c0.021,3.577,2.908,6.549,6.578,6.549c1.241,0,2.417-0.347,3.44-0.985l4.032,4.026c0.167,0.166,0.43,0.166,0.596,0l1.479-1.478C18.292,16.234,18.292,15.968,18.125,15.804 M8.578,13.99c-3.198,0-5.716-2.593-5.733-5.71c-0.017-3.084,2.438-5.686,5.74-5.686c3.197,0,5.625,2.493,5.64,5.624C14.242,11.548,11.621,13.99,8.578,13.99 M16.349,16.981l-3.637-3.635c0.131-0.11,0.721-0.695,0.876-0.884l3.642,3.639L16.349,16.981z"></path>
+        </svg>
+      </div>
+      <!--form search section - end -->
+      <!--end of filter buttons -->
+
+      <!-- store  items-->
+      <div class="row" class="store-items" id="store-items">
+
+        
+
+
+        
+        <!-- First Aid-->
+        <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item First Aid" data-item="First Aid">
+          <div class="card ">
+            <div class="img-container">
+              <p><a href="https://www.getwelly.com/collections" target="_blank">
+              <img src="img/firstaid.jpg" width ="200" height="250" class="card-img-top store-img" alt=""></a></p>
+              <span class="store-item-icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </div>
+            <div class="card-body">
+              <div class="card-text justify-content-between text-capitalize">
+                <h6 id="store-item-classification">First Aid item</h6>
+                <h5 id="store-item-name">Bravery Badges</h5>
+                <h5 class="store-item-value">$ <strong id="store-item-price" class="font-weight-bold">5</strong></h5>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- First Aid-->
+      <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item First Aid" data-item="First Aid">
+        <div class="card ">
+          <div class="img-container">
+            <p><a href="https://www.getwelly.com/collections" target="_blank">
+            <img src="img/firstaid.jpg" width ="200" height="250" class="card-img-top store-img" alt=""></a></p>
+            <span class="store-item-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </span>
+          </div>
+          <div class="card-body">
+            <div class="card-text justify-content-between text-capitalize">
+              <h6 id="store-item-classification">First Aid item</h6>
+                <h5 id="store-item-name">Bravery Badges</h5>
+              <h5 class="store-item-value">$ <strong id="store-item-price" class="font-weight-bold">5</strong></h5>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    
+        
+
+      <!-- First Aid-->
+      <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item First Aid" data-item="First Aid">
+        <div class="card ">
+          <div class="img-container">
+            <p><a href="https://www.getwelly.com/collections" target="_blank">
+            <img src="img/firstaid.jpg" width ="200" height="250" class="card-img-top store-img" alt=""></a></p>
+            <span class="store-item-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </span>
+          </div>
+          <div class="card-body">
+            <div class="card-text justify-content-between text-capitalize">
+              <h6 id="store-item-classification">First Aid item</h6>
+                <h5 id="store-item-name">Bravery Badges</h5>
+              <h5 class="store-item-value">$ <strong id="store-item-price" class="font-weight-bold">5</strong></h5>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
+      
+
+
+
+  <!-- modal-container -->
+  <div class="container-fluid ">
+    <div class="row lightbox-container align-items-center">
+      <div class="col-10 col-md-10 mx-auto text-right lightbox-holder">
+        <span class="lightbox-close"><i class="fas fa-window-close"></i></span>
+        <div class="lightbox-item"></div>
+        <span class="lightbox-control btnLeft"><i class="fas fa-caret-left"></i></span>
+        <span class="lightbox-control btnRight"><i class="fas fa-caret-right"></i></span>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <script src="js/index.js"></script>
+</body>
+
+</html>

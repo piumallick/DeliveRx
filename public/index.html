@@ -52,10 +52,11 @@
           </div>
           <!-- end of single info -->
           <!-- single info -->
-          <div id="cart-info" class="nav-info align-items-center cart-info d-flex justify-content-between mx-lg-5">
-            <span class="cart-info__icon mr-lg-3"><i class="fas fa-shopping-cart"></i></span>
-            <p class="mb-0 text-capitalize"><span id="item-count">0</span> items - $<span class="item-total">0</span>
-            </p>
+          <div id="cart-info" >
+          <!-- <div id="cart-info" class="nav-info align-items-center cart-info d-flex justify-content-between mx-lg-5"> -->
+            <!-- <span class="cart-info__icon mr-lg-3"><i class="fas fa-shopping-cart"></i></span>
+            <p class="mb-0 text-capitalize"><span id="item-count">0</span> items - $<span class="item-total">0</span> -->
+            <!-- </p> -->
           </div>
           <!-- end of single info -->
         </div>
@@ -144,10 +145,10 @@
       <!--filter buttons -->
       <div class="row">
         <div class=" col-lg-8 mx-auto d-flex justify-content-around my-2 sortBtn flex-wrap">
-          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="all"> All</a>
+          <a href="http://localhost:3000/" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="all"> All</a>
           <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2"
              data-filter="Cold&Cough">Cold/Cough</a>
-          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="First Aid">First Aid</a>
+          <a href="http://localhost:3000/firstaid" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="First Aid">First Aid</a>
           <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2"
              data-filter="Pain&Fever">Pain/Fever</a>
           <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Skin Care">Skin Care</a>
@@ -181,7 +182,8 @@
           <div class="card ">
 
             <div class="img-container">
-              <img src="img/coldcough.jpg" class="card-img-top store-img" alt="">
+              <p><a href="https://www.dimetapp.com" target="_blank">
+              <img src="img/coldcough.jpg" width ="200" height="250" class="card-img-top store-img" alt=""></a></p>
               <!-- yellow span -->
               <span class="store-item-icon">
                 <!-- shopping cart icon -->
@@ -190,8 +192,9 @@
             </div>
 
             <div class="card-body">
-              <div class="card-text d-flex justify-content-between text-capitalize">
-                <h5 id="store-item-name">Cold & Cough item</h5>
+              <div class="card-text justify-content-between text-capitalize">
+                <h6 id="store-item-classification">Cold & Cough item</h6>
+                <h5 id="store-item-name">Dimetap</h5>
                 <h5 class="store-item-value">$ <strong id="store-item-price" class="font-weight-bold">5</strong></h5>
 
               </div>
@@ -206,14 +209,16 @@
         <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item First Aid" data-item="First Aid">
           <div class="card ">
             <div class="img-container">
-              <img src="img/firstaid.jpg" class="card-img-top store-img" alt="">
+              <p><a href="https://www.getwelly.com/collections" target="_blank">
+              <img src="img/firstaid.jpg" width ="200" height="250" class="card-img-top store-img" alt=""></a></p>
               <span class="store-item-icon">
                 <i class="fas fa-shopping-cart"></i>
               </span>
             </div>
             <div class="card-body">
-              <div class="card-text d-flex justify-content-between text-capitalize">
-                <h5 id="store-item-name">First Aid item</h5>
+              <div class="card-text justify-content-between text-capitalize">
+                <h6 id="store-item-classification">First Aid item</h6>
+                <h5 id="store-item-name">Bravery Badges</h5>
                 <h5 class="store-item-value">$ <strong id="store-item-price" class="font-weight-bold">5</strong></h5>
 
               </div>
@@ -225,14 +230,16 @@
         <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item Pain&Fever" data-item="Pain&Fever">
           <div class="card ">
             <div class="img-container">
-              <img src="img/painfever.jpg" class="card-img-top store-img" alt="">
+              <p><a href="https://www.dimetapp.com" target="_blank">
+              <img src="img/painfever.jpg" width ="200" height="250" class="card-img-top store-img" alt=""></a></p>
               <span class="store-item-icon">
                 <i class="fas fa-shopping-cart"></i>
               </span>
             </div>
             <div class="card-body">
-              <div class="card-text d-flex justify-content-between text-capitalize">
-                <h5 id="store-item-name">Pain&Fever item</h5>
+              <div class="card-text justify-content-between text-capitalize">
+                <h6 id="store-item-classification">Pain&Fever item</h6>
+                <h5 id="store-item-name">Tension Headache</h5>
                 <h5 class="store-item-value">$ <strong id="store-item-price" class="font-weight-bold">5</strong></h5>
 
               </div>
@@ -240,6 +247,29 @@
           </div>
         </div>
         </div>
+
+      <!-- First Aid-->
+      <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item First Aid" data-item="First Aid">
+        <div class="card ">
+          <div class="img-container">
+            <p><a href="https://www.getwelly.com/collections" target="_blank">
+            <img src="img/firstaid.jpg" width ="200" height="250" class="card-img-top store-img" alt=""></a></p>
+            <span class="store-item-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </span>
+          </div>
+          <div class="card-body">
+            <div class="card-text justify-content-between text-capitalize">
+              <h6 id="store-item-classification">First Aid item</h6>
+                <h5 id="store-item-name">Bravery Badges</h5>
+              <h5 class="store-item-value">$ <strong id="store-item-price" class="font-weight-bold">5</strong></h5>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      
       
 
 
