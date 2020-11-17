@@ -100,7 +100,8 @@ router.get('/login', function (req, res, next) {
         res.render('login', {
             title: "Log In",
             userData: req.user,
-            messages: {danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success')}
+            messages: {danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success')},
+            error: null
         });
     }
 });
@@ -113,18 +114,44 @@ router.get('/logout', function (req, res) {
     res.redirect('/');
 });
 
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '../dashboard',
-    failureRedirect: './login',
-    failureFlash: true,
-    session: true
-}), function (req, res) {
-    if (req.body.remember) {
-        req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // Cookie expires after 30 days
-    } else {
-        req.session.cookie.expires = false; //Cookie expires at the end of the session
-    }
-    res.redirect('/');
+
+// router.post('/login', passport.authenticate('local', {
+//     successRedirect: '../dashboard',
+//     failureRedirect: './login',
+//     failureFlash: {error: "User not found"},
+//     session: true
+// }), function (req, res) {
+//     if (req.body.remember) {
+//         req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // Cookie expires after 30 days
+//     } else {
+//         req.session.cookie.expires = false; //Cookie expires at the end of the session
+//     }
+//     res.redirect('/');
+// });
+
+
+router.post('/login', function(req, res, next) {
+    passport.authenticate('local', function(err, user, info) {
+        if (err) {
+            return next(err);
+        }
+        if (!user) {
+            return res.render('./login', {
+                error: "User Id and/or Password does not match."
+            });
+        }
+        req.logIn(user, function(err) {
+            if (err) {
+                return next(err);
+            }
+            if (req.body.remember) {
+                req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // Cookie expires after 30 days
+            } else {
+                req.session.cookie.expires = false; //Cookie expires at the end of the session
+            }
+            return res.redirect('../dashboard');
+        });
+    })(req, res, next);
 });
 
 passport.use('local', new LocalStrategy({

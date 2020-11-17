@@ -97,13 +97,14 @@ updateBtn.onclick = function () {
 //create
 const addNameHidden = document.querySelector('#add-name-hidden');
 const addBtn = document.querySelector('#add-name-btn');
+const medicineForm = document.getElementById("medicine_form");
 
 addNameHidden.onclick = function () {
     const addSection = document.querySelector('#add-row');
     addSection.hidden = false;
 }
 
-addBtn.onclick = function () {
+medicineForm.onsubmit = function () {
     const idInput = document.querySelector('#id-input');
     const nameInput = document.querySelector('#name-input');
     const priceInput = document.querySelector('#price-input');
@@ -197,4 +198,8 @@ function loadHTMLTable(data) {
     });
 
     table.innerHTML = tableHtml;
+}
+
+function form_reset() {
+    medicineForm.reset();
 }

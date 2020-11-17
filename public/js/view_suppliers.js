@@ -31,9 +31,7 @@ cancelBtnAdd.onclick = function () {
 }
 cancelBtnUpdate.onclick = function () {
     location.reload();
-
 }
-
 
 //search
 searchBtn.onclick = function () {
@@ -63,7 +61,6 @@ function handleEditRow(id) {
     document.querySelector('#update-row-btn').dataset.id = id;
     // console.log(id)
 }
-
 
 
 //update
@@ -99,13 +96,14 @@ updateBtn.onclick = function () {
 //create
 const addNameHidden = document.querySelector('#add-name-hidden');
 const addBtn = document.querySelector('#add-name-btn');
+const supplierForm = document.getElementById("supplier_form");
 
 addNameHidden.onclick = function () {
     const addSection = document.querySelector('#add-row');
     addSection.hidden = false;
 }
 
-addBtn.onclick = function () {
+supplierForm.onsubmit = function () {
     const idInput = document.querySelector('#id-input');
     const nameInput = document.querySelector('#name-input');
     const addressInput = document.querySelector('#address-input');
@@ -160,8 +158,8 @@ function insertRowIntoTable(data) {
         }
     }
 
-    tableHtml += `<td><button class="delete-row-btn" data-id=${data.id}>Delete</td>`;
-    tableHtml += `<td><button class="edit-row-btn" data-id=${data.id}>Edit</td>`;
+    tableHtml += `<td><button class="delete-row-btn" data-id=${data.id}>DELETE</td>`;
+    tableHtml += `<td><button class="edit-row-btn" data-id=${data.id}>EDIT</td>`;
 
     tableHtml += "</tr>";
 
@@ -196,10 +194,14 @@ function loadHTMLTable(data) {
         tableHtml += `<td>${email_address}</td>`;
         // tableHtml += `<td><img src="img-cart/${picture}"></td>`;
         // tableHtml += `<td>${new Date(dateAdded).toLocaleString()}</td>`;
-        tableHtml += `<td><button class="delete-row-btn" data-id=${supplier_id}>Delete</td>`;
-        tableHtml += `<td><button class="edit-row-btn" data-id=${supplier_id}>Edit</td>`;
+        tableHtml += `<td><button class="delete-row-btn" data-id=${supplier_id}>DELETE</td>`;
+        tableHtml += `<td><button class="edit-row-btn" data-id=${supplier_id}>EDIT</td>`;
         tableHtml += "</tr>";
     });
 
     table.innerHTML = tableHtml;
+}
+
+function form_reset() {
+    supplierForm.reset();
 }
