@@ -53,6 +53,9 @@ app.get('/logout', function (req, res, next) {
     res.redirect('/users/logout');
 });
 
+app.get('/firstaid', function (req, res, next) {
+    res.sendFile(path.join(__dirname, '/public', 'firstaid.html'));
+});
 const PORT = process.env.PORT || 3000;
 process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = 0;
 

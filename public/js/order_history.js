@@ -1,52 +1,84 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    fetch('./customer/orderhistory/getAll')
-        .then(data=>console.log(data))
+    fetch('http://localhost:3000/customer/orderhistory/getAll')
+        
         .then(response => response.json())//服务器端返回的response,convert into json
-        .then(data => insertRowIntoTable(data['data']))
-        .then(data => loadHTMLTable(data['data']['rows']))
-      
-        // .then(data=>console.log(data))
-
+        // .then(data=>console.log(data['data']['rows']))
+        .then(data => insertData(data['data']['rows']))
+        // .then(data => loadHTMLTable(data))
     //load the html table to display data,we want this no data to actually come as response from our database
     // loadHTMLTable([]);
 });
 
 document.querySelector('table tbody').addEventListener('click', function (event) {
     if (event.target.className === "delete-row-btn") {
-        deleteRowById(event.target.dataset.id);//pass row id
-        console.log(event.target.dataset.id);
+        deleteRowByDateadded(event.target.dataset.id);//pass row id
+        console.log(event.target.dataset);
     }
-    if (event.target.className === "edit-row-btn") {
-        handleEditRow(event.target.dataset.id);
-    }
+    
 });
+
+const searchBtn = document.getElementById("search-btn")
+searchBtn.onclick = function () {
+    const searchValue = document.querySelector('#search-input').value;
+
+    fetch('http://localhost:3000/customer/orderhistory/search/' + searchValue)
+        .then(response => response.json())
+        .then(data => loadHTMLTable(data['data']['rows']));
+}
+
+
+
+function insertData(data){
+    for (var row in data){
+        insertRowIntoTable(data[row])
+    }
+    return data
+}
+
+function deleteRowByDateadded(dateadded) {
+    fetch('http://localhost:3000/customer/orderhistory/delete/' + dateadded, {
+        method: 'DELETE'
+    })
+        .then(response => response.json())
+        //just return true or false
+        .then(data => {
+            console.log(data)
+            if (data.success) {
+                location.reload();
+            }
+        });
+}
 
 function insertRowIntoTable(data) {
     const table = document.querySelector('table tbody');
     // const table = document.getElementById('tbodyOrder');
-    console.log(table)
+    // console.log(table)
+    // console.log(data)
     // check if no data
     const isTableData = table.querySelector('.no-data');
 
     let tableHtml = "<tr>";
-
+    
     for (var key in data) {
-        // console.log(key)
         if (data.hasOwnProperty(key)) {
             if (key === 'dateadded') {
                 data[key] = new Date(data[key]).toLocaleString();
             }
             if (key === 'picture') {
-                data[key] = `<img src="${data[key]}"></img>`
+                
+                data[key] = `<img src="http://localhost:3000/${data[key]}"></img>`
+                console.log(data[key])
                 // tableHtml += `<td><img src="img-cart/${data[key]}"></td>`;
             }
             tableHtml += `<td>${data[key]}</td>`;
+            //<img src="./img-cart/firstaid.jpg"></img>
         }
     }
 
     tableHtml += `<td><button class="delete-row-btn" data-id=${data.dateadded}>Delete</td>`;
-    tableHtml += `<td><button class="edit-row-btn" data-id=${data.dateadded}>Edit</td>`;
+
+   
 
     tableHtml += "</tr>";
 
@@ -56,6 +88,7 @@ function insertRowIntoTable(data) {
         const newRow = table.insertRow();
         newRow.innerHTML = tableHtml;
     }
+    
 }
 
 
@@ -78,16 +111,13 @@ function loadHTMLTable(data) {
         tableHtml += "<tr>";
         tableHtml += `<td>${order_name}</td>`;
         tableHtml += `<td>${order_classification}</td>`;
+        tableHtml += `<td><img src="http://localhost:3000/${picture}"></img></td>`;
         tableHtml += `<td>${order_price}</td>`;
-        tableHtml += `<td><img src="${picture}"></td>`;
         tableHtml += `<td>${new Date(dateadded).toLocaleString()}</td>`;
         tableHtml += `<td><button class="delete-row-btn" data-id=${data.dateadded}>Delete</td>`;
-        tableHtml += `<td><button class="edit-row-btn" data-id=${data.dateadded}>Edit</td>`;
         tableHtml += "</tr>";
     });
 
 
     table.innerHTML = tableHtml;
 }
-
-module.exports = [insertRowIntoTab, loadHTMLTable];

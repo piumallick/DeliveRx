@@ -33,6 +33,7 @@ router.get('/orderhistory', function (req, res) {
 router.get('/orderhistory/getAll', (request, response) => {
     const db = dbService.getDbServiceInstance();
     const result = db.getAllDataOrders();
+    console.log("hello")
     // response.json({
     //     success:true
     // })
@@ -61,6 +62,32 @@ router.post('/orderhistory/insert', (request, response) => {
     .catch(err => console.log(err));
  
     
+});
+
+router.get('/orderhistory/search/:classification', (request, response) => {
+    const { classification } = request.params;
+    console.log(classification)
+    const db = dbService.getDbServiceInstance();
+
+    const result = db.searchByClassification(classification);
+    
+    
+    result
+    .then(data => response.json({data : data}))
+    .catch(err => console.log(err));
+})
+
+
+router.delete('/orderhistory/delete/:dateadded', (request, response) => {
+    console.log(request.params)
+    const { dateadded } = request.params;
+    const db = dbService.getDbServiceInstance();
+
+    const result = db.deleteOrderRowByDate(dateadded);
+    
+    result//true or false
+    .then(data => response.json({success : data}))
+    .catch(err => console.log(err));
 });
 
 

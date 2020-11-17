@@ -36,12 +36,6 @@
           <li class="nav-item">
             <a class="nav-link" href="#store">Store</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="http://localhost:3000/customer/orderhistory">Order History</a>
-          </li>
         </ul>
         <div class="nav-info-items d-none d-lg-flex ">
           <!-- single info -->
@@ -51,15 +45,18 @@
           </div>
           <div>
             <ul>
-                 <a class="nav-link" href="/logout">Logout</a>
+              <!--<a class="nav-link" target="popup"
+                 onclick="window.open('/users/login', 'name', 'width=500,height=650')">Login</a> -->
+              <a class="nav-link" href="/users/login">Login</a>
             </ul>
           </div>
           <!-- end of single info -->
           <!-- single info -->
-          <div id="cart-info" class="nav-info align-items-center cart-info d-flex justify-content-between mx-lg-5">
-            <span class="cart-info__icon mr-lg-3"><i class="fas fa-shopping-cart"></i></span>
-            <p class="mb-0 text-capitalize"><span id="item-count">0</span> items - $<span class="item-total">0</span>
-            </p>
+          <div id="cart-info" >
+          <!-- <div id="cart-info" class="nav-info align-items-center cart-info d-flex justify-content-between mx-lg-5"> -->
+            <!-- <span class="cart-info__icon mr-lg-3"><i class="fas fa-shopping-cart"></i></span>
+            <p class="mb-0 text-capitalize"><span id="item-count">0</span> items - $<span class="item-total">0</span> -->
+            <!-- </p> -->
           </div>
           <!-- end of single info -->
         </div>
@@ -84,7 +81,7 @@
           <!-- cart buttons -->
           <div class="cart-buttons-container mt-3 d-flex justify-content-between">
             <a href="#" id="clear-cart" class="btn btn-outline-secondary btn-black text-uppercase">clear cart</a>
-            <a href="#" id ="check-out" class="btn btn-outline-secondary text-uppercase btn-pink">checkout</a>
+            <a href="#" class="btn btn-outline-secondary text-uppercase btn-pink">checkout</a>
           </div>
           <!--end of  cart buttons -->
           <!--  -->
@@ -148,10 +145,10 @@
       <!--filter buttons -->
       <div class="row">
         <div class=" col-lg-8 mx-auto d-flex justify-content-around my-2 sortBtn flex-wrap">
-          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="all"> All</a>
+          <a href="http://localhost:3000/" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="all"> All</a>
           <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2"
              data-filter="Cold&Cough">Cold/Cough</a>
-          <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="First Aid">First Aid</a>
+          <a href="http://localhost:3000/firstaid" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="First Aid">First Aid</a>
           <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2"
              data-filter="Pain&Fever">Pain/Fever</a>
           <a href="#" class="btn btn-outline-secondary btn-black  filter-btn m-2" data-filter="Skin Care">Skin Care</a>
@@ -180,31 +177,7 @@
       <!-- store  items-->
       <div class="row" class="store-items" id="store-items">
 
-        <!-- Cold&Cough card item -->
-        <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item Cold&Cough" data-item="Cold&Cough">
-          <div class="card ">
-
-            <div class="img-container">
-              <img src="img/coldcough.jpg" width ="200" height="250" class="card-img-top store-img" alt="">
-              <!-- yellow span -->
-              <span class="store-item-icon">
-                <!-- shopping cart icon -->
-                <i class="fas fa-shopping-cart"></i>
-              </span>
-            </div>
-
-            <div class="card-body">
-              <div class="card-text justify-content-between text-capitalize">
-                <h6 id="store-item-classification">Cold & Cough item</h6>
-                <h5 id="store-item-name">Dimetap</h5>
-                
-                <h5 class="store-item-value">$ <strong id="store-item-price" class="font-weight-bold">5</strong></h5>
-
-              </div>
-            </div>
-          </div>
-          <!-- end of card-->
-        </div>
+        
 
 
         
@@ -212,46 +185,68 @@
         <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item First Aid" data-item="First Aid">
           <div class="card ">
             <div class="img-container">
-              <img src="img/firstaid.jpg" width ="200" height="250" class="card-img-top store-img" alt="">
+              <p><a href="https://www.getwelly.com/collections" target="_blank">
+              <img src="img/firstaid.jpg" width ="200" height="250" class="card-img-top store-img" alt=""></a></p>
               <span class="store-item-icon">
                 <i class="fas fa-shopping-cart"></i>
               </span>
             </div>
             <div class="card-body">
-              <!-- console.log(event.target.parentElement.parentElement.nextElementSibling) get card body-->
               <div class="card-text justify-content-between text-capitalize">
                 <h6 id="store-item-classification">First Aid item</h6>
                 <h5 id="store-item-name">Bravery Badges</h5>
-                
-               
                 <h5 class="store-item-value">$ <strong id="store-item-price" class="font-weight-bold">5</strong></h5>
 
               </div>
             </div>
           </div>
         </div>
+
+        <!-- First Aid-->
+      <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item First Aid" data-item="First Aid">
+        <div class="card ">
+          <div class="img-container">
+            <p><a href="https://www.getwelly.com/collections" target="_blank">
+            <img src="img/firstaid.jpg" width ="200" height="250" class="card-img-top store-img" alt=""></a></p>
+            <span class="store-item-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </span>
+          </div>
+          <div class="card-body">
+            <div class="card-text justify-content-between text-capitalize">
+              <h6 id="store-item-classification">First Aid item</h6>
+                <h5 id="store-item-name">Bravery Badges</h5>
+              <h5 class="store-item-value">$ <strong id="store-item-price" class="font-weight-bold">5</strong></h5>
+
+            </div>
+          </div>
+        </div>
+      </div>
     
-        <!-- pain fever -->
-        <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item Pain&Fever" data-item="Pain&Fever">
-          <div class="card ">
-            <div class="img-container">
-              <img src="img/painfever.jpg" width ="200" height="250" class="card-img-top store-img" alt="">
-              <span class="store-item-icon">
-                <i class="fas fa-shopping-cart"></i>
-              </span>
-            </div>
-            <div class="card-body">
-              <div class="card-text justify-content-between text-capitalize">
-                <h6 id="store-item-classification">Pain&Fever item</h6>
-                <h5 id="store-item-name">Tension Headache</h5>
-                
-                <h5 class="store-item-value">$ <strong id="store-item-price" class="font-weight-bold">5</strong></h5>
+        
 
-              </div>
+      <!-- First Aid-->
+      <div class="col-10 col-sm-6 col-lg-4 mx-auto my-3 store-item First Aid" data-item="First Aid">
+        <div class="card ">
+          <div class="img-container">
+            <p><a href="https://www.getwelly.com/collections" target="_blank">
+            <img src="img/firstaid.jpg" width ="200" height="250" class="card-img-top store-img" alt=""></a></p>
+            <span class="store-item-icon">
+              <i class="fas fa-shopping-cart"></i>
+            </span>
+          </div>
+          <div class="card-body">
+            <div class="card-text justify-content-between text-capitalize">
+              <h6 id="store-item-classification">First Aid item</h6>
+                <h5 id="store-item-name">Bravery Badges</h5>
+              <h5 class="store-item-value">$ <strong id="store-item-price" class="font-weight-bold">5</strong></h5>
+
             </div>
           </div>
         </div>
-        </div>
+      </div>
+
+      
       
 
 
@@ -272,8 +267,7 @@
 
 
 
-  <script src="js/view_customers.js"></script>
-  <!-- <script src="js/order_history.js"></script> -->
+  <script src="js/index.js"></script>
 </body>
 
 </html>

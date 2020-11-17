@@ -241,6 +241,44 @@ class DbService {
             console.log(error);
         }
     }
+    //delete order history
+    async deleteOrderRowByDate(dateadded) {
+        try {
+            // let id = parseInt(supplier_id, 10); //10 is base
+            console.log(dateadded);
+            const response = await new Promise((resolve, reject) => {
+                const query = "DELETE FROM orders WHERE dateadded =$1 ;"
+
+                pool.query(query, [dateadded], (err, result) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(result.rowCount);//rowCount 是要被删除的那一行
+                })
+            });
+            // console.log(response);
+            return response === 1 ? true : false;
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
+
+    //search order by classification
+    async searchByClassification(classification) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM orders WHERE order_classification = $1;";
+
+                pool.query(query, [classification], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            console.log(response)
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 
     //inser order history
