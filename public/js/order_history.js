@@ -76,7 +76,8 @@ function insertRowIntoTable(data) {
         }
     }
 
-    tableHtml += `<td><button class="delete-row-btn" data-id=${data.dateadded}>Delete</td>`;
+
+    //tableHtml += `<td><button class="delete-row-btn" data-id=${data.dateadded}>Delete</td>`;
 
    
 

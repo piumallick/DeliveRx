@@ -137,7 +137,7 @@ router.post('/login', function(req, res, next) {
         }
         if (!user) {
             return res.render('./login', {
-                error: "User Id and/or Password does not match."
+                error: "Credentials do not match."
             });
         }
         req.logIn(user, function(err) {
