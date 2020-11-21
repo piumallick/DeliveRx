@@ -7,33 +7,71 @@ const bcrypt = require('bcrypt');
 const uuid = require('uuid');
 app.use(express.static('public'));
 const LocalStrategy = require('passport-local').Strategy;
+const emailValidator = require("email-validator");
+const PhoneNumber = require('awesome-phonenumber');
+const moment = require('moment');
 
 router.get('/register', function (req, res, next) {
     res.render('register', {
         title: "Register",
         userData: req.user,
-        messages: {danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success')}
+        messages: {danger: req.flash('danger'), warning: req.flash('warning'), success: req.flash('success')},
+        error: null,
+        body: null
     });
 });
 
 router.post('/register', async function (req, res) {
+    let email = req.body.email;
+    let phone_number = req.body.phone_number;
+
+    if (!emailValidator.validate(email)) {
+        res.render('register', {
+            error: "The email address is not proper.",
+            body: req.body
+        });
+        return;
+    }
+
+    let dob = req.body.dob;
+    let age = moment().diff(moment(dob, "YYYY-MM-DD"), 'years');
+    if (age < 18) {
+        res.render('register', {
+            error: "You must be 18 years of age or above.",
+            body: req.body
+        });
+        return;
+    }
+
+    let phoneNumber = new PhoneNumber(phone_number, 'US');
+    if (!phoneNumber.isValid()) {
+        res.render('register', {
+            error: "The phone number is not proper.",
+            body: req.body
+        });
+        return;
+    }
+
     try {
         const client = await pool.connect()
         await client.query('BEGIN')
         const hashedPassword = await bcrypt.hash(req.body.password, 10);  // Allow 10 rounds of hash encryption; default is 10
         await JSON.stringify(client.query(`SELECT user_id
                                            FROM users
-                                           WHERE email_address = $1`, [req.body.email], function (err, result) {
+                                           WHERE email_address = $1`, [email], function (err, result) {
             if (result.rows[0]) {
                 req.flash('warning', "This email address is already registered. <a href='/login'>Log In!</a>");
-                res.redirect('/register');
+                res.render('register', {
+                    error: "This email address is already registered.",
+                    body: req.body
+                });
             } else {
                 let queryString = `INSERT INTO users (user_id, first_name, last_name, email_address, phone_number,
                                                       address,
                                                       gender, dob, passwd)
                                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`;
-                client.query(queryString, [uuid.v4(), req.body.firstName, req.body.lastName, req.body.email, req.body.phone_number,
-                    req.body.address, req.body.gender, req.body.dob, hashedPassword], function (err, result) {
+                client.query(queryString, [uuid.v4(), req.body.firstName, req.body.lastName, email, phone_number,
+                    req.body.address, req.body.gender, dob, hashedPassword], function (err, result) {
                     if (err) {
                         console.log(err);
                         client.query('ROLLBACK');
@@ -42,7 +80,7 @@ router.post('/register', async function (req, res) {
                         let qs = `SELECT user_id
                                   FROM users
                                   WHERE email_address = $1`
-                        client.query(qs, [req.body.email], function (err, result) {
+                        client.query(qs, [email], function (err, result) {
                             if (err) {
                                 console.log(err);
                                 client.query('ROLLBACK');
@@ -130,8 +168,8 @@ router.get('/logout', function (req, res) {
 // });
 
 
-router.post('/login', function(req, res, next) {
-    passport.authenticate('local', function(err, user, info) {
+router.post('/login', function (req, res, next) {
+    passport.authenticate('local', function (err, user, info) {
         if (err) {
             return next(err);
         }
@@ -140,7 +178,7 @@ router.post('/login', function(req, res, next) {
                 error: "Credentials do not match."
             });
         }
-        req.logIn(user, function(err) {
+        req.logIn(user, function (err) {
             if (err) {
                 return next(err);
             }
@@ -218,7 +256,7 @@ passport.deserializeUser(function (user, done) {
 })
 
 router.get('/', function (req, res, next) {
-    res.render('login');
+    res.redirect('/users/login');
 });
 
 function checkAuthenticated(req, res, next) {
