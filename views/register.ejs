@@ -40,34 +40,34 @@ JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
                 <form action="./register" method="POST">
                     <div class="input-container">
                         <input type="text" id="firstName" name="firstName" placeholder="First Name" class="input-field"
-                               required=""/>
+                               required="" <% if(body) {%> value="<%=body.firstName%>" <% } %>/>
                     </div>
                     <div class="input-container">
                         <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="input-field"
-                               required=""/>
+                               required="" <% if(body) {%> value="<%=body.lastName%>" <% } %>/>
                     </div>
                     <div class="input-container">
                         <input type="email" id="email" name="email" placeholder="Email Address" class="input-field"
-                               required=""/>
+                               required="" <% if(body) {%> value="<%=body.email%>" <% } %>/>
                     </div>
                     <div class="input-container">
                         <input type="text" id="phone_number" name="phone_number" placeholder="Phone Number"
                                class="input-field"
-                               required=""/>
+                               required="" <% if(body) {%> value="<%=body.phone_number%>" <% } %>/>
                     </div>
                     <div class="input-container">
                         <input type="text" id="address" name="address" placeholder="Address" class="input-field"
-                               required=""/>
+                               required="" <% if(body) {%> value="<%=body.address%>" <% } %>/>
                     </div>
                     <div class="input-container">
                         <input type="text" id="gender" name="gender" placeholder="Gender" class="input-field"
-                               required=""/>
+                               required="" <% if(body) {%> value="<%=body.gender%>" <% } %>/>
 
                     </div>
                     <div class="input-container">
                         <input type="text" id="dob" name="dob" placeholder="Date of Birth" class="textbox-n input-field"
                                min="1900-01-01" max="2020-12-31"
-                               onfocus="(this.type='date')" required=""/>
+                               onfocus="(this.type='date')" required="" <% if(body) {%> value="<%=body.dob%>" <% } %>/>
 
                     </div>
                     <div class="input-container">
@@ -79,6 +79,11 @@ JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
                                placeholder="Confirm Password"
                                class="input-field" required=""/>
                     </div>
+                    <% if (error) { %>
+                        <div id="err-div" class="error-message">
+                            <%= error %>
+                        </div>
+                    <% } %>
                     <div id="button">
                         <div class="inner">
                             <button tabindex="0" type="submit" id="continue_button"
