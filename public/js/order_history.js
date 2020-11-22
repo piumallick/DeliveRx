@@ -10,13 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // loadHTMLTable([]);
 });
 
-document.querySelector('table tbody').addEventListener('click', function (event) {
-    if (event.target.className === "delete-row-btn") {
-        deleteRowByDateadded(event.target.dataset.id);//pass row id
-        console.log(event.target.dataset);
-    }
-    
-});
+// document.querySelector('table tbody').addEventListener('click', function (event) {
+//     if (event.target.className === "delete-row-btn") {
+//         deleteRowByDateadded(event.target.dataset.id);//pass row id
+//         console.log(event.target.dataset);
+//     }
+//
+// });
 
 const searchBtn = document.getElementById("search-btn")
 searchBtn.onclick = function () {
@@ -36,19 +36,19 @@ function insertData(data){
     return data
 }
 
-function deleteRowByDateadded(dateadded) {
-    fetch('http://localhost:3000/customer/orderhistory/delete/' + dateadded, {
-        method: 'DELETE'
-    })
-        .then(response => response.json())
-        //just return true or false
-        .then(data => {
-            console.log(data)
-            if (data.success) {
-                location.reload();
-            }
-        });
-}
+// function deleteRowByDateadded(dateadded) {
+//     fetch('http://localhost:3000/customer/orderhistory/delete/' + dateadded, {
+//         method: 'DELETE'
+//     })
+//         .then(response => response.json())
+//         //just return true or false
+//         .then(data => {
+//             console.log(data)
+//             if (data.success) {
+//                 location.reload();
+//             }
+//         });
+// }
 
 function insertRowIntoTable(data) {
     const table = document.querySelector('table tbody');
@@ -107,6 +107,14 @@ function loadHTMLTable(data) {
 
     let tableHtml = "";
 
+    tableHtml += "<tr>";
+    tableHtml += `<td>Name</td>`;
+    tableHtml += `<td>Classification</td>`;
+    tableHtml += `<td>Picture</td>`;
+    tableHtml += `<td>Price</td>`;
+    tableHtml += `<td>Order Placed On</td>`;
+    tableHtml += "</tr>";
+
     data.forEach(function ({order_name, order_classification, order_price, picture,dateadded}) {
         console.log(order_name, order_classification, order_price, picture,dateadded)
         tableHtml += "<tr>";
@@ -115,7 +123,7 @@ function loadHTMLTable(data) {
         tableHtml += `<td><img src="http://localhost:3000/${picture}"></img></td>`;
         tableHtml += `<td>${order_price}</td>`;
         tableHtml += `<td>${new Date(dateadded).toLocaleString()}</td>`;
-        tableHtml += `<td><button class="delete-row-btn" data-id=${data.dateadded}>Delete</td>`;
+        //tableHtml += `<td><button class="delete-row-btn" data-id=${data.dateadded}>Delete</td>`;
         tableHtml += "</tr>";
     });
 

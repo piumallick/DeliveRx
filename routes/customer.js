@@ -32,7 +32,8 @@ router.get('/orderhistory', function (req, res) {
 
 router.get('/orderhistory/getAll', (request, response) => {
     const db = dbService.getDbServiceInstance();
-    const result = db.getAllDataOrders();
+    const customer = getUser(request);
+    const result = db.getAllDataOrders(customer);
     console.log("hello")
     // response.json({
     //     success:true
@@ -54,7 +55,7 @@ router.post('/orderhistory/insert', (request, response) => {
     
     const db = dbService.getDbServiceInstance();
     
-    const result = db.insertNewOrderName(name,classification,price,picture);//insert is async function need to use then
+    const result = db.insertNewOrderName(name,classification,price,picture, getUser(request));//insert is async function need to use then
     // console.log("result")
     // console.log(result)
     result

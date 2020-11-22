@@ -2,9 +2,11 @@ const {pool} = require('./dbConfig');
 
 class DbService {
     static instance;
+
     static getDbServiceInstance() {
         return this.instance ? this.instance : new DbService();
     }
+
     //get data medicines
     async getAllData() {
         try {
@@ -24,6 +26,7 @@ class DbService {
             console.log(error);
         }
     }
+
     //get all suppliers
     async getAllDataSuppliers() {
         try {
@@ -77,16 +80,18 @@ class DbService {
     async checkSupplier(supplier_id, supplier_name, address, phonenumber, email) {
         try {
             const response = await new Promise((resolve, reject) => {
-                const queryString = `SELECT * from supplier WHERE (supplier_id = $1 OR email_address = $2);`
+                const queryString = `SELECT *
+                                     from supplier
+                                     WHERE (supplier_id = $1 OR email_address = $2);`
 
-                pool.query(queryString, [supplier_id, supplier_name,address, phonenumber, email], (err, results) => {
+                pool.query(queryString, [supplier_id, supplier_name, address, phonenumber, email], (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 })
             });
-            return { found: 1 };
+            return {found: 1};
         } catch (error) {
-            return { found: 0 };
+            return {found: 0};
         }
     }
 
@@ -95,10 +100,10 @@ class DbService {
         try {
             const dateadded = new Date();
             const response = await new Promise((resolve, reject) => {
-                const queryString = `INSERT INTO supplier (supplier_id, supplier_name,address, phone_number, email_address)
+                const queryString = `INSERT INTO supplier (supplier_id, supplier_name, address, phone_number, email_address)
                                      VALUES ($1, $2, $3, $4, $5);`
 
-                pool.query(queryString, [supplier_id, supplier_name,address, phonenumber, email], (err, results) => {
+                pool.query(queryString, [supplier_id, supplier_name, address, phonenumber, email], (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 })
@@ -118,6 +123,7 @@ class DbService {
             console.log(error);
         }
     }
+
     // delete for medicine
     async deleteRowById(medicine_id) {
         try {
@@ -137,6 +143,7 @@ class DbService {
             return false;
         }
     }
+
     //delete for suppliers
     async deleteRowByIdSuppliers(supplier_id) {
         try {
@@ -158,6 +165,7 @@ class DbService {
             return false;
         }
     }
+
     //update for medicine
     async updateNameById(medicine_id, medicine_name, round, category_name) {
         console.log(medicine_id)
@@ -180,9 +188,10 @@ class DbService {
             return false;
         }
     }
+
     //update for suppliers
-    async updateNameByIdSuppliers(supplier_id, supplier_name,address, phonenumber, email) {
-        
+    async updateNameByIdSuppliers(supplier_id, supplier_name, address, phonenumber, email) {
+
         try {
             supplier_id = parseInt(supplier_id, 10);
             const response = await new Promise((resolve, reject) => {
@@ -242,13 +251,13 @@ class DbService {
 
 
     //get order data
-    async getAllDataOrders() {
+    async getAllDataOrders(customer) {
         try {
             // promise where we handle the query,if query successful resolve otherwise reject,if reject go straight to the catch block
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT * FROM orders;";
+                const query = "SELECT order_name, order_classification, picture, order_price, dateadded FROM orders INNER JOIN users ON users.user_id = orders.user_id WHERE users.email_address = $1 ;";
 
-                pool.query(query, (err, results) => {
+                pool.query(query, [customer.email], (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 })
@@ -260,6 +269,7 @@ class DbService {
             console.log(error);
         }
     }
+
     //delete order history
     async deleteOrderRowByDate(dateadded) {
         try {
@@ -301,17 +311,16 @@ class DbService {
 
 
     //inser order history
-    async insertNewOrderName(order_name, order_classification, order_price, picture) {
+    async insertNewOrderName(order_name, order_classification, order_price, picture, customer) {
         try {
             const dateadded = new Date().toLocaleString();
             // console.log(order_name, order_classification, order_price, picture,dateadded);
-            
 
             const response = await new Promise((resolve, reject) => {
-                const queryString = `INSERT INTO orders (order_name, order_classification, dateadded, picture, order_price)
-                                     VALUES ($1, $2, $3, $4, $5);`
+                const queryString = `INSERT INTO orders (order_name, order_classification, dateadded, picture, order_price, user_id)
+                                     VALUES ($1, $2, $3, $4, $5, (SELECT user_id FROM users WHERE email_address = $6));`
 
-                pool.query(queryString, [order_name, order_classification,dateadded,picture,order_price], (err, results) => {
+                pool.query(queryString, [order_name, order_classification, dateadded, picture, order_price, customer.email], (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 })
