@@ -91,8 +91,6 @@ router.delete('/orderhistory/delete/:dateadded', (request, response) => {
 });
 
 
-
-
 function verifyCustomer(req, res, next) {
     if (isAuthenticated(req)) {
         if (isCustomer(req, res)) {
@@ -111,5 +109,50 @@ function isCustomer(req, res) {
     }
     res.redirect('/users/login');
 }
+
+
+
+
+// view customer medicine search
+router.get('/search_medicines', function (req, res) {
+    let path = rootFinder() + "/public/search_medicines.html";
+    console.log("search_medicines")
+    return res.status(200).sendFile(path, (err => {
+        console.log(err);
+    }));
+});
+
+router.get('/search_medicines/results', (request, response) => {
+    //console.log(request.params)
+    //const { category } = request.params;
+    const db = dbService.getDbServiceInstance();
+    console.log('this far?')
+    const result = db.searchMedByCategory();
+    
+    result//true or false
+        .then(data => response.json({success : data}))
+        .catch(err => console.log(err));
+});
+
+// view customer medicine search
+router.get('/profile', function (req, res) {
+    let path = rootFinder() + "/public/profile.html";
+    console.log("arrived at profile")
+    return res.status(200).sendFile(path, (err => {
+        console.log(err);
+    }));
+
+});
+
+router.get('/profile/results', (request, response) => {
+    //const { user_id } = request.params;
+    //console.log(user_id)
+    const db = dbService.getDbServiceInstance();
+    const result = db.getProfile('cc6b23fa-25c4-4ad6-9eda-5f576c6b6ecd');
+
+    result//true or false
+        .then(data => response.json({success : data}))
+        .catch(err => console.log(err));
+});
 
 module.exports = [router, verifyCustomer, isCustomer];
