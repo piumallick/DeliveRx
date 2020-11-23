@@ -37,7 +37,7 @@ class DbService {
                 })
             });
             //response is a promise object
-            // console.log(response); 
+            //console.log(response); 
             return response;
         } catch (error) {
             console.log(error);
@@ -349,19 +349,19 @@ class DbService {
 
     
     //get profile info
-    async getProfile(user_id) {
+    async getProfile(user_email) {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "select first_name || ' ' || last_name as name, email_address, phone_number, address, dob from users WHERE user_id = $1;";
+                const query = "select first_name || ' ' || last_name as name, email_address, phone_number, address, dob from users WHERE email_address = $1;";
 
-                pool.query(query, [user_id], (err, results) => {
+                pool.query(query, [user_email], (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 })
             });
-            //
-            console.log('got from db')
-            console.log(response)
+
+            //console.log('got from db')
+            //console.log(response)
             return response;
         } catch (error) {
             console.log(error);
