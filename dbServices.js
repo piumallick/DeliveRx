@@ -337,6 +337,43 @@ class DbService {
         }
     }
 
+    //search for medicine by category
+    async searchMedByCategory(category) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM medicine_category_price WHERE category_name = $1;";
+
+                pool.query(query, [category], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            console.log(response)
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    //get profile info
+    async getProfile(email) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "select first_name || ' ' || last_name as name, email_address, phone_number, address, dob from users WHERE email_address = $1;";
+
+                pool.query(query, [user_id], (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            console.log(response)
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 }
 
 module.exports = DbService;
