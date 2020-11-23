@@ -92,8 +92,6 @@ router.delete('/orderhistory/delete/:dateadded', (request, response) => {
 });
 
 
-
-
 function verifyCustomer(req, res, next) {
     if (isAuthenticated(req)) {
         if (isCustomer(req, res)) {
@@ -112,7 +110,6 @@ function isCustomer(req, res) {
     }
     res.redirect('/users/login');
 }
-
 
 
 // view customer medicine search
@@ -147,14 +144,15 @@ router.get('/profile', function (req, res) {
 });
 
 router.get('/profile/results', (request, response) => {
-    //const { user_id } = request.params;
-    //console.log(user_id)
-    const db = dbService.getDbServiceInstance();
-    const result = db.getProfile('cc6b23fa-25c4-4ad6-9eda-5f576c6b6ecd');
 
+    const user_email = getUser(request).email;
+    const db = dbService.getDbServiceInstance();
+    const result = db.getProfile(user_email);
+
+    //response.send('test result')
     result//true or false
         .then(data => response.json({success : data}))
-        .catch(err => console.log(err));
+       .catch(err => console.log(err));
 });
 
 
