@@ -32,7 +32,8 @@ router.get('/orderhistory', function (req, res) {
 
 router.get('/orderhistory/getAll', (request, response) => {
     const db = dbService.getDbServiceInstance();
-    const result = db.getAllDataOrders();
+    const customer = getUser(request);
+    const result = db.getAllDataOrders(customer);
     console.log("hello")
     // response.json({
     //     success:true
@@ -54,7 +55,7 @@ router.post('/orderhistory/insert', (request, response) => {
     
     const db = dbService.getDbServiceInstance();
     
-    const result = db.insertNewOrderName(name,classification,price,picture);//insert is async function need to use then
+    const result = db.insertNewOrderName(name,classification,price,picture, getUser(request));//insert is async function need to use then
     // console.log("result")
     // console.log(result)
     result
@@ -111,8 +112,6 @@ function isCustomer(req, res) {
 }
 
 
-
-
 // view customer medicine search
 router.get('/search_medicines', function (req, res) {
     let path = rootFinder() + "/public/search_medicines.html";
@@ -128,7 +127,7 @@ router.get('/search_medicines/results', (request, response) => {
     const db = dbService.getDbServiceInstance();
     console.log('this far?')
     const result = db.searchMedByCategory();
-    
+
     result//true or false
         .then(data => response.json({success : data}))
         .catch(err => console.log(err));
@@ -145,6 +144,7 @@ router.get('/profile', function (req, res) {
 });
 
 router.get('/profile/results', (request, response) => {
+
     const user_email = getUser(request).email;
     const db = dbService.getDbServiceInstance();
     const result = db.getProfile(user_email);
@@ -154,5 +154,6 @@ router.get('/profile/results', (request, response) => {
         .then(data => response.json({success : data}))
        .catch(err => console.log(err));
 });
+
 
 module.exports = [router, verifyCustomer, isCustomer];

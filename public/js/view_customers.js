@@ -57,7 +57,7 @@
                   <span id="cart-item-price" class="cart-item-price" class="mb-0">${item.price}</span>
                 </div>
                 <a href="#" id='cart-item-remove' class="cart-item-remove">
-                  <i class="fas fa-trash"></i>
+                 
                 </a>`;
               // console.log(item);
             //the cart part right corner
@@ -120,7 +120,7 @@
           .then(response => response.json())
           // .then(data => insertOrder.insertRowIntoTable(data['data']));
       }
-      alert('successfully, you can check your order in order history')
+      alert('You have successfully placed your order. The item(s) will get delivered to you within 2 hours.')
 
   })
 
