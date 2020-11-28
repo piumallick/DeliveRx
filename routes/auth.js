@@ -183,9 +183,12 @@ router.post('/login', function (req, res, next) {
                 return next(err);
             }
             if (req.body.remember) {
-                req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000; // Cookie expires after 30 days
+                // If user selects remember me,
+                // Cookie expires after 30 days
+                req.session.cookie.maxAge = 30 * 24 * 60 * 60 * 1000;
             } else {
-                req.session.cookie.expires = false; //Cookie expires at the end of the session
+                //Cookie expires at the end of the session
+                req.session.cookie.expires = false;
             }
             return res.redirect('../dashboard');
         });
