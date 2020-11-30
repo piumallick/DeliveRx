@@ -6,9 +6,9 @@ This project represents a full-stack implementation of an e-commerce website whi
 
 ## Instructions to execute the project
 
-Step 1: Download the project 
-Step 2: Using cmd (Command Line Prompt), go to the project directory 
-Step 3: Execute --> npm install nodemon 
-Step 4: Execute --> npm run dev
-Step 5: Open any browser and type --> http://localhost:`PORT`
+Step 1: Download the project <br>
+Step 2: Using cmd (Command Line Prompt), go to the project directory <br>
+Step 3: Execute --> npm install nodemon <br>
+Step 4: Execute --> npm run dev <br>
+Step 5: Open any browser and type --> http://localhost:`PORT` <br>
 For example, http://localhost:3000 
